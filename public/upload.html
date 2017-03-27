@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SGA Document Archive - Upload</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./css/upload.css"></head>
+<body>
+
+<div class="container">
+	
+
+	<div class="header">
+		<br>
+		<div class="logo">
+			<a href="./index.html"><img src="./images/logo.jpg" class="logoImg"></a>
+		</div>
+		
+		<div class="search">
+			<br>
+			<h2 style="font-weight: bold;">Georgia College<br>
+			<h3>Student Government Association</h3>
+			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
+			
+			<br>
+			<input type="text" class="form-control input-md" name="searchText" id="search" placeholder="Enter your search query here...">
+			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button>
+		</div>
+		
+		<div class="menu">
+			<a href="./upload.html"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+			<a href="./login.html"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+		</div>
+	</div>
+	
+	<div class="containerdivNewLine"></div>
+	<hr><br>
+
+
+	<div class="upload">
+		<h2 style="font-weight: bold;">Upload New Document</h2>
+		<div class="row no-gutter">
+			<div class="col-md-5"></div>
+			<div class="col-md-2">
+				<img src="./images/newDoc.png" alt="newDoc" id="newDoc">
+			</div>
+			<div class="col-md-5"></div>
+		</div>
+		<br>
+
+		<div class="row no-gutter">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="fileinput fileinput-new" data-provides="fileinput">
+	    			<center><span style="background-color: #CCDDDD" class="btn btn-default btn-file"><span><h4 style="font-weight: bold">Choose file</h4></span><input type="file" /></span>
+	    			<span class="fileinput-filename"></span><span class="fileinput-new"></span></center>
+	    		</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<br>
+		
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-3">
+				<label for="doctypeSelect">Document Type:</label>
+				<select style="background-color: #EEEEE7" class="input-lg form-control" name="doctypeSelect" id="doctypeSelect">
+				    <option value="bill">Bill</option>
+				    <option value="resolution">Resolution</option>
+				</select>
+			</div>
+			<div class="col-md-3">
+				<label for="dateSelect">Date:</label>
+				<input style="background-color: #EEEEE7" type="date" class="btn-block input-lg" name="dateSelect" id="dateSelect">
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<br>
+
+		<div class="row no-gutter">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<label for="tagline">Tagline</label>
+				<textarea class="form-control input-block input-lg" rows="3" id="tagline" placeholder="Ex: To allocate $2,000 to GC Miracle to fund stage costs for Dance Marathon 2017" required></textarea>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<br>
+		
+		<div class="row no-gutter">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<button type="button" class="btn-block btn-lg btn-success" name="uploadBtn" id="uploadBtn">Upload</button>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+
+		<br><br><br><br>
+	
+	</div>
+</div>
+</body>
+</html>

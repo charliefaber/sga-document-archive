@@ -1,0 +1,121 @@
+.no-gutter > [class*='col-'] {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.upload h2 {
+	text-align: center;
+}
+
+.header h2, h3, h4 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.logo {
+	width: 20%;
+	float: left;
+}
+
+.logo .logoImg {
+	width: 14em;
+	height: 14em;
+}
+
+.search {
+	width: 60%;
+	float:left;
+}
+
+.search input {
+	width: 80%;
+	float: left;
+	display: inline;
+}
+
+.search button {
+	width: 20%;
+	float: left;
+	display: inline;
+}
+
+.menu {
+	width: 20%;
+	float: right;
+	display: inline;
+}
+
+.menu .menuBtn {
+	width: 49%;
+	display: inline;
+}
+
+.upload #newDoc {
+	width: 200px;
+	height: 200px;
+	margin: auto;
+	display: block;
+}
+
+option {
+	font-size: 20px;
+}
+
+hr {
+	border: none;
+	height: 1px;
+	color: #CCC;
+	background-color: #CCC;
+}
+
+.containerdivNewLine {
+	clear: both; 
+	float: none; 
+	display: block; 
+	position: relative; 
+}
+
+/* Dropdown Button */
+.doctypeBtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.doctypeBtn:hover, .doctypeBtn:focus {
+    background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.doctypeDD {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}

@@ -1,26 +1,41 @@
-/* jshint esnext: true */
+var http = require('http');
+var fs = require('fs');
+
 var express = require('express');
 var app = express();
 
-app.use(function(req, res, next) {
-	console.log(`${req.method} request for ${req.url}`);
-	next();
+var mongo = require('mongodb');
+var MongoClient = mongo.MongoClient;
+var url = "mongodb://localhost:27017/sgadb";
+
+MongoClient.connect(url, function (err, db) {
+	if (err) {
+		console.log('Unable to connect to the mongoDB server. Error:', err);
+	} 
+	else {
+		//HURRAY!! We are connected. :)
+		console.log('Connection established to', url);
+    	// Get the documents collection
+		//Close connection
+		db.close();
+	}
 });
 
-app.use(express.static("./"));
+app.use(express.static("./public"));
 
-app.listen(3000);
+app.listen(3000,function() {
+	console.log("Express app running on port 3000");
+});
 
-console.log("Express app runnig on port 3000");
+app.get("/", function(req, res) {
+	res.sendFile("public/index.html");
+});
 
 module.exports = app;
 
 
 
 /*
-var http = require('http');
-var fs = require('fs');
-
 http.createServer(function(req, res) {
 	if(req.method === "GET") {
 		res.writeHead(200, {"Content-Type": "text/html"});

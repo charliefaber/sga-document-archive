@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SGA Document Archive - Home</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./css/index.css">
+</head>
+
+<body>
+<div class="container">
+
+	<br>
+	<div class="header">
+		<div class="row no-gutter">
+			<div class="col-md-10"></div>
+			<div class="col-md-1">
+				<a href="./upload.html"><button type="button" class="btn btn-default btn-md btn-block">Upload</button></a>
+			</div>
+			<div class="col-md-1">
+				<a href="./login.html"><button type="button" class="btn btn-primary btn-md btn-block">Sign In</button></a>
+			</div>
+		</div>
+		<br><br>
+	</div>
+
+
+	<div class="search">
+		<div class="row no-gutter">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<a href="./index.html"><img src="./images/logo.jpg" alt="logo" id="logo"></a>
+			</div>
+			<div class="col-md-4"></div>
+		</div>	
+		<h3 style="font-weight: bold;">Georgia College Student Government Association</h3>
+		<h3 style="font-style: italic;">Document Archive</h3>
+		<br><br>
+
+		<form action="\search" method="post">
+			<div class="row no-gutter">
+				<div class="col-md-2"></div>
+				<div class="col-md-6">
+					<input type="text" class="form-control input-lg input-block" name="searchText" id="search" placeholder="Enter your search query here..." required/>
+				</div>
+				<div class="col-md-2">
+					<button type="submit" name="searchBtn" class="btn btn-primary btn-block btn-lg">Search</button>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</form>
+
+		<div class="row no-gutter">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<p style="float: left"><a href="advanced.html">Advanced Search</a></p>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<br>
+	</div>
+
+	<hr>
+
+	<div class="recent">
+	</div>
+
+
+	<div class="footer">
+	</div>
+</div>
+</body>
+</html>

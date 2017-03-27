@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SGA Document Archive - Login</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./css/login.css">
+</head>
+
+<body>
+<div class="container">
+	
+	<div class="header">
+		<br>
+		<div class="logo">
+			<a href="./index.html"><img src="./images/logo.jpg" class="logoImg"></a>
+		</div>
+		
+		<div class="search">
+			<br>
+			<h2 style="font-weight: bold;">Georgia College<br>
+			<h3>Student Government Association</h3>
+			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
+			
+			<br>
+			<input type="text" class="form-control input-md" name="searchText" id="search" placeholder="Enter your search query here...">
+			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button>
+		</div>
+		
+		<div class="menu">
+			<a href="./upload.html"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+			<a href="./login.html"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+		</div>
+	</div>
+	
+	<div class="containerdivNewLine"></div>
+	<hr>
+
+	
+	<div class="login">
+		<div class="row no-gutter">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+					<h1 style="font-weight: bold;text-align: center">User Login</h1> 
+					<img src="./images/key.png" id="key" name="key" alt="login">
+			</div>
+			<div class="col-md-4"></div>
+
+		</div>
+	    <div class="row no-gutter">
+	    	<div class="col-md-4"></div>
+	        <div class="col-md-4">
+	        	<br>
+	            <h4 style="font-style: italic; text-align: center">Welcome Back!</h4><br>
+	            <label for="userName">Username:</label>
+	            <input type="text" id="userName" class="form-control input-lg chat-input" placeholder="username" />
+	            <br>
+				<label for="userPassword">Password:</label>
+	            <input type="text" id="userPassword" class="form-control input-lg chat-input" placeholder="password" />
+	        </div>   
+	        <div class="col-md-4"></div>
+	    </div>
+	    <br>
+
+	    <div class="row no-gutter">
+	    	<div class="col-md-4"></div>
+	    	<div class="col-md-2">
+	    		<center><a href="#" class="btn btn-primary btn-block btn-lg">login <i class="fa fa-sign-in"></i></a></center>
+	    	</div>
+	    	<div class="col-md-6"></div>
+	    </div>
+	    <br><br><br><br>
+    </div>
+</div>
+</body>
+</html>
