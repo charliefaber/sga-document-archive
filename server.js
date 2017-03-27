@@ -1,5 +1,23 @@
 /* jshint esnext: true */
+var express = require('express');
+var app = express();
 
+app.use(function(req, res, next) {
+	console.log(`${req.method} request for ${req.url}`);
+	next();
+});
+
+app.use(express.static("./"));
+
+app.listen(3000);
+
+console.log("Express app runnig on port 3000");
+
+module.exports = app;
+
+
+
+/*
 var http = require('http');
 var fs = require('fs');
 
@@ -32,3 +50,4 @@ http.createServer(function(req, res) {
 }).listen(3000);
 
 console.log("Home server listening on port 3000");
+*/
