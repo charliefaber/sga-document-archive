@@ -1,0 +1,25 @@
+{
+  "name": "sga-document-archive",
+  "version": "1.0.0",
+  "description": "A website that archives and searches past SGA bills and resolutions",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "sga",
+    "document",
+    "archive",
+    "georgia",
+    "college"
+  ],
+  "author": "Charlie Faber",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
+    "express": "^4.15.2",
+    "underscore": "^1.8.3"
+  }
+}
