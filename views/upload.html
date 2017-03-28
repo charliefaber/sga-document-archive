@@ -9,16 +9,15 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="./css/upload.css"></head>
+	<link rel="stylesheet" type="text/css" href="../public/css/upload.css"></head>
 <body>
-
 <div class="container">
 	
 
 	<div class="header">
 		<br>
 		<div class="logo">
-			<a href="./index.html"><img src="./images/logo.jpg" class="logoImg"></a>
+			<a href="./index.html"><img src="../public/images/logo.jpg" class="logoImg"></a>
 		</div>
 		
 		<div class="search">
@@ -43,46 +42,36 @@
 
 
 	<div class="upload">
-		<h2 style="font-weight: bold;">Upload New Document</h2>
-		<div class="row no-gutter">
-			<div class="col-md-5"></div>
-			<div class="col-md-2">
-				<img src="./images/newDoc.png" alt="newDoc" id="newDoc">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-5">
+				<h2 style="font-weight: bold;">Upload New Document</h2>
+				<img src="../public/images/newDoc.png" alt="newDoc" id="newDoc">
+				<br>
+				<center><input id="upload-input" type="file" name="uploads[]"></center>
 			</div>
-			<div class="col-md-5"></div>
+			<br>
+			<div class="col-md-5">
+				<label for="doctypeSelect">Document Type:</label>
+				<select id="doctypeSelect" name="doctypeSelect" class="input-lg form-control" onchange="changeTextBox();">
+				    <option value="bill" selected>Bill</option>
+				    <option value="res">Resolution</option>
+				</select>
+				<br>
+				<label for="dollarText">Dollar Amount:</label>
+				<input type="number" placeholder="$0.00" name="dollarText" id="dollarText" class="btn-block input-lg">
+				
+				<br><br>
+
+				<label for="dateSelect">Date:</label>
+				<input type="date" class="btn-block input-lg" name="dateSelect" id="dateSelect">
+			</div>
+			<div class="col-md-1"></div>
 		</div>
 		<br>
-
-		<div class="row no-gutter">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="fileinput fileinput-new" data-provides="fileinput">
-	    			<center><span style="background-color: #CCDDDD" class="btn btn-default btn-file"><span><h4 style="font-weight: bold">Choose file</h4></span><input type="file" /></span>
-	    			<span class="fileinput-filename"></span><span class="fileinput-new"></span></center>
-	    		</div>
-			</div>
-			<div class="col-md-3"></div>
-		</div>
 		<br>
 		
 		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-3">
-				<label for="doctypeSelect">Document Type:</label>
-				<select style="background-color: #EEEEE7" class="input-lg form-control" name="doctypeSelect" id="doctypeSelect">
-				    <option value="bill">Bill</option>
-				    <option value="resolution">Resolution</option>
-				</select>
-			</div>
-			<div class="col-md-3">
-				<label for="dateSelect">Date:</label>
-				<input style="background-color: #EEEEE7" type="date" class="btn-block input-lg" name="dateSelect" id="dateSelect">
-			</div>
-			<div class="col-md-3"></div>
-		</div>
-		<br>
-
-		<div class="row no-gutter">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<label for="tagline">Tagline</label>
@@ -92,17 +81,27 @@
 		</div>
 		<br>
 		
-		<div class="row no-gutter">
+		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<button type="button" class="btn-block btn-lg btn-success" name="uploadBtn" id="uploadBtn">Upload</button>
+				<button type="button" class="btn-block btn-lg btn-success" name="uploadBtn" id="upload-btn">Upload</button>
 			</div>
 			<div class="col-md-4"></div>
 		</div>
-
 		<br><br><br><br>
 	
 	</div>
 </div>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="js/upload.js"></script>
+<script type="text/javascript">
+	function changeTextBox() {
+		if(document.getElementById("doctypeSelect").value === "res") {
+			document.getElementById("dollarText").disabled=true;
+		} else {
+			document.getElementById("dollarText").disabled=false;
+		}
+	}
+</script>
 </body>
 </html>
