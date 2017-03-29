@@ -9,7 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="./css/login.css">
+	<link rel="stylesheet" type="text/css" href="../public/css/login.css">
 </head>
 
 <body>
@@ -18,18 +18,18 @@
 	<div class="header">
 		<br>
 		<div class="logo">
-			<a href="./index.html"><img src="./images/logo.jpg" class="logoImg"></a>
+			<a href="./index.html"><img src="../public/images/logo.jpg" class="logoImg"></a>
 		</div>
 		
 		<div class="search">
 			<br>
-			<h2 style="font-weight: bold;">Georgia College<br>
+			<h2 style="font-weight: bold;">Georgia College<br></h2>
 			<h3>Student Government Association</h3>
 			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
 			
 			<br>
 			<input type="text" class="form-control input-md" name="searchText" id="search" placeholder="Enter your search query here...">
-			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button>
+			<a href="./results.html"><button type="submit" name="searchBtn" class="btn btn-primary btn-md" required>Search</button></a>
 		</div>
 		
 		<div class="menu">
@@ -47,7 +47,7 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 					<h2 style="font-weight: bold;text-align: center">User Login</h2> 
-					<img src="./images/key.png" id="key" name="key" alt="login">
+					<img src="../public/images/key.png" id="key" name="key" alt="login">
 			</div>
 			<div class="col-md-4"></div>
 
@@ -62,18 +62,13 @@
 	            <br>
 				<label for="userPassword">Password:</label>
 	            <input type="text" id="userPassword" class="form-control input-lg chat-input" placeholder="password" />
+	            <br>
+	            <a href="#" class="btn btn-success btn-block btn-lg">login <i class="fa fa-sign-in"></i></a>
+
 	        </div>   
 	        <div class="col-md-4"></div>
 	    </div>
 	    <br>
-
-	    <div class="row no-gutter">
-	    	<div class="col-md-4"></div>
-	    	<div class="col-md-2">
-	    		<center><a href="#" class="btn btn-primary btn-block btn-lg">login <i class="fa fa-sign-in"></i></a></center>
-	    	</div>
-	    	<div class="col-md-6"></div>
-	    </div>
 	    <br><br><br><br>
     </div>
 </div>

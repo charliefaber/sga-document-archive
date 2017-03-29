@@ -22,13 +22,14 @@
 		
 		<div class="search">
 			<br>
-			<h2 style="font-weight: bold;">Georgia College<br>
+			<h2 style="font-weight: bold;">Georgia College<br></h2>
 			<h3>Student Government Association</h3>
 			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
 			
 			<br>
 			<input type="text" class="form-control input-md" name="searchText" id="search" placeholder="Enter your search query here...">
-			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button>
+			<a href="./results.html"><button type="submit" name="searchBtn" class="btn btn-primary btn-md" required>Search</button></a>
+			<a href="./advanced.html">Advanced Search</a>
 		</div>
 		
 		<div class="menu">
@@ -42,13 +43,18 @@
 
 
 	<div class="upload">
+		<form ng-app="file-upload" ng-controller="MyCtrl">
+		<fieldset>
+
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-5">
 				<h2 style="font-weight: bold;">Upload New Document</h2>
 				<img src="../public/images/newDoc.png" alt="newDoc" id="newDoc">
 				<br>
-				<center><input id="upload-input" type="file" name="uploads[]"></center>
+				<center><input type=”file” ngf-select="" ng-model="theFile" uploader=”uploader” name="file" options=”uploadOptions” />
+				<button type="button" class="btn btn-success btn-md" ng-click="submit(theFile)">Submit</button>	
+				</center>
 			</div>
 			<br>
 			<div class="col-md-5">
@@ -88,12 +94,15 @@
 			</div>
 			<div class="col-md-4"></div>
 		</div>
+
+		</fieldset>
+		</form>
 		<br><br><br><br>
 	
 	</div>
 </div>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script src="js/upload.js"></script>
+<script src="/js/upload.js"></script>
 <script type="text/javascript">
 	function changeTextBox() {
 		if(document.getElementById("doctypeSelect").value === "res") {
@@ -101,6 +110,25 @@
 		} else {
 			document.getElementById("dollarText").disabled=false;
 		}
+	}
+</script>
+<script>
+	angular
+	.module(‘app’)
+	.controller(‘myController’, function (currentUser, $scope, FileUploader, $sce) {
+		$scope.uploader = new FileUploader();
+		var uploadURL = ‘/api/upload/’ + currentUser._id
+  		$scope.uploadOptions = {
+	    	queueLimit: 1,
+	    	autoUpload: true,
+	    	url: uploadURL
+  		}
+ 
+	  	$scope.submit = function() {
+		    if (!$scope.uploader.queue[0]) 
+		    	return;
+		    $scope.uploader.queue[0].upload(); 
+	  	}
 	}
 </script>
 </body>

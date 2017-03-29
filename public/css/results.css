@@ -1,0 +1,62 @@
+.no-gutter > [class*='col-'] {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.header h2, h3, h4 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.logo {
+	width: 20%;
+	float: left;
+}
+
+.logo .logoImg {
+	width: 14em;
+	height: 14em;
+}
+
+.search {
+	width: 60%;
+	float:left;
+}
+
+.search input {
+	width: 80%;
+	float: left;
+	display: inline;
+}
+
+.search button {
+	width: 20%;
+	float: left;
+	display: inline;
+}
+
+.menu {
+	width: 20%;
+	float: right;
+	display: inline;
+}
+
+.menu .menuBtn {
+	width: 49%;
+	display: inline;
+}
+
+.containerdivNewLine {
+	clear: both; 
+	float: none; 
+	display: block; 
+	position: relative; 
+}
+
+hr {
+	border: none;
+	height: 1px;
+	color: #CCC;
+	background-color: #CCC;
+}
+
