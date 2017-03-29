@@ -1,36 +1,38 @@
-var express = require('express');
-var app = express();
+// Server-side Operations
 
+// Reference npm dependencies
+var express = require('express');
 var fileUpload = require('express-fileupload');
 var textract = require('textract');
 var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+
+// MongoDB dependencies and variables
 var mongo = require('mongodb');
 var assert = require('assert');
-var ObjectId = require('mongodb').ObjectID;
-
 var MongoClient = mongo.MongoClient;
 var url = "mongodb://charliefaber:1234567890987654321@ds143340.mlab.com:43340/sgadb";
-var sgadb;
 
-var myDate = new Date("2017-3-29");
+// Instantiate express variable
+var app = express();
 
-
-
+// Set up Node.js for express-fileupload and body-parser
 app.use(fileUpload());
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
 
+// POST for upload form submission
 app.post('/upload', function(req, res) {
   if (!req.files)
     return res.status(400).send('No files were uploaded.');
  
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file 
-  let myFile = req.files.myFile;
-  let filePath = path.join(__dirname,'/uploads/test.docx');
+  var myFile = req.files.myFile;
+  var filePath = path.join(__dirname,'/uploads/test.docx');
  
      var idText = req.body.idText,
         doctypeSelect = req.body.doctypeSelect,
@@ -68,7 +70,7 @@ app.post('/upload', function(req, res) {
       "name": idText, 
       "path": filePath,
       "amount": dollarText,
-      "date": myDate, 
+      "date": dateSelect, 
       "tagline": tagText, 
       "text": bodyText});
     db.close();
@@ -80,6 +82,8 @@ app.post('/upload', function(req, res) {
 var server = app.listen(3000, function(){
   console.log('Server listening on port 3000');
 });
+
+
 /*
 //Error when run: cannot find module, './models/User'
 //var User = require('../models/User');
