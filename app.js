@@ -1,10 +1,90 @@
 var express = require('express');
 var app = express();
-var router = express.Router();
-var multiparty = require('connect-multiparty')();
 
+var fileUpload = require('express-fileupload');
+var textract = require('textract');
+var path = require('path');
+var bodyParser = require('body-parser');
+var fs = require('fs');
+var mongo = require('mongodb');
+var assert = require('assert');
+var ObjectId = require('mongodb').ObjectID;
+
+var MongoClient = mongo.MongoClient;
+var url = "mongodb://charliefaber:1234567890987654321@ds143340.mlab.com:43340/sgadb";
+var sgadb;
+
+var myDate = new Date("2017-3-29");
+
+
+
+app.use(fileUpload());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+app.post('/upload', function(req, res) {
+  if (!req.files)
+    return res.status(400).send('No files were uploaded.');
+ 
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file 
+  let myFile = req.files.myFile;
+  let filePath = path.join(__dirname,'/uploads/test.docx');
+ 
+     var idText = req.body.idText,
+        doctypeSelect = req.body.doctypeSelect,
+        dollarText = req.body.dollarText,
+        dateSelect = req.body.dateSelect,
+        tagText = req.body.tagText,
+        bodyText = "";
+  // Use the mv() method to place the file somewhere on your server 
+  myFile.mv(filePath, function(err) {
+    if (err)
+      return res.status(500).send(err);
+    
+
+
+    textract.fromFileWithPath(filePath, function( error, text ) {
+      bodyText = text;
+      //console.log(text);
+      res.send(text);
+    });
+    console.log(idText);
+    console.log(doctypeSelect);
+    console.log(dollarText);
+    console.log(dateSelect);
+    console.log(tagText);
+    console.log(bodyText);
+    console.log("");
+    console.log(req.body);
+    console.log(req.files);
+  });
+
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+
+    db.collection('bill').insertOne( {
+      "name": idText, 
+      "path": filePath,
+      "amount": dollarText,
+      "date": myDate, 
+      "tagline": tagText, 
+      "text": bodyText});
+    db.close();
+    });
+
+
+});
+
+var server = app.listen(3000, function(){
+  console.log('Server listening on port 3000');
+});
+/*
 //Error when run: cannot find module, './models/User'
 //var User = require('../models/User');
+
+
 
 var fs = require('fs');
 var mongoose = require('mongoose');
@@ -44,10 +124,8 @@ router.post('/upload/:id', multiparty, function(req, res){
    });
 });
 
-var server = app.listen(3000, function(){
-  console.log('Server listening on port 3000');
-});
 
+*/
 /*var express = require('express');
 var app = express();
 var path = require('path');
