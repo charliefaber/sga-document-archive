@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="../public/css/advanced.css"></head>
 </head>
 <body>
+<script type="text/javascript" src="../public/js/advanced.js"></script>
 <div class="container">
 	
 
@@ -79,7 +80,7 @@
 				</div>
 				<div class="col-md-2">
 					<div class="radio">
-						<label><input type="radio" name="spanOpt">Entire Document</label>
+						<label><input type="radio" name="spanOpt" checked="true">Entire Document</label>
 					</div>			
 				</div>
 				</fieldset>
@@ -110,12 +111,12 @@
 				<fieldset>
 					<div class="col-md-2">
 						<div class="checkbox">
-							<label><input type="checkbox" id="billCheck">Bills</label>
+							<label><input type="checkbox" id="billCheck" checked="true" onchange="changeAmountBox()">Bills</label>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="checkbox">
-							<label><input type="checkbox" id="resCheck">Resolutions</label>
+							<label><input type="checkbox" checked="true" id="resCheck">Resolutions</label>
 						</div>			
 					</div>
 				</fieldset>
@@ -157,10 +158,10 @@
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
 			<div class="col-md-3">
-				<label>Minimum<input type="number" name="amtMin" id="amtMin" class="form-control input-block" placeholder="0.00"></label>
+				<label>Minimum<input type="text" name="amtMin" id="amtMin" class="form-control input-block" placeholder="0.00"></label>
 			</div>
 			<div class="col-md-3">
-				<label>Maximum<input type="number" name="matMax" id="amtMax" class="form-control input-block" placeholder="1,000,000.00"></label>
+				<label>Maximum<input type="text" name="matMax" id="amtMax" class="form-control input-block" placeholder="1,000,000.00"></label>
 			</div>
 			<div class="col-md-5"></div>
 		</div>

@@ -1,3 +1,17 @@
+function changeTextBox() {
+  let dollarText = document.getElementById("dollarText");
+  if(document.getElementById("doctypeSelect").value === "res") {
+    dollarText.value = "N/A";
+    dollarText.disabled=true;
+  } else {
+    dollarText.value = "";
+
+    dollarText.disabled=false;
+  }
+}
+
+/*
+
 $('#upload-input').on('change', function(){
 
   var files = $(this).get(0).files;
@@ -28,3 +42,4 @@ $('#upload-input').on('change', function(){
     });
   }
 });
+*/

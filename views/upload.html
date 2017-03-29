@@ -8,6 +8,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="angular(.min).js"></script>
+	<script src="ng-file-upload-shim(.min).js"></script> <!-- for no html5 browsers support -->
+	<script src="ng-file-upload(.min).js"></script>
 
 	<link rel="stylesheet" type="text/css" href="../public/css/upload.css"></head>
 <body>
@@ -41,23 +45,22 @@
 	<div class="containerdivNewLine"></div>
 	<hr><br>
 
-
 	<div class="upload">
 		<form ng-app="file-upload" ng-controller="MyCtrl">
 		<fieldset>
 
 		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-5">
+			<div class="col-md-2"></div>
+			<div class="col-md-4">
 				<h2 style="font-weight: bold;">Upload New Document</h2>
 				<img src="../public/images/newDoc.png" alt="newDoc" id="newDoc">
 				<br>
-				<center><input type=”file” ngf-select="" ng-model="theFile" uploader=”uploader” name="file" options=”uploadOptions” />
-				<button type="button" class="btn btn-success btn-md" ng-click="submit(theFile)">Submit</button>	
-				</center>
+				<input type="file" nv-file-select uploader="uploader" options="uploadOptions" id="myFile">
+				<button ng-click="submit()">Submit</button>
+
 			</div>
 			<br>
-			<div class="col-md-5">
+			<div class="col-md-4">
 				<label for="doctypeSelect">Document Type:</label>
 				<select id="doctypeSelect" name="doctypeSelect" class="input-lg form-control" onchange="changeTextBox();">
 				    <option value="bill" selected>Bill</option>
@@ -65,14 +68,14 @@
 				</select>
 				<br>
 				<label for="dollarText">Dollar Amount:</label>
-				<input type="number" placeholder="$0.00" name="dollarText" id="dollarText" class="btn-block input-lg">
+				<input type="text" placeholder="0.00" name="dollarText" id="dollarText" class="btn-block input-lg">
 				
 				<br><br>
 
 				<label for="dateSelect">Date:</label>
 				<input type="date" class="btn-block input-lg" name="dateSelect" id="dateSelect">
 			</div>
-			<div class="col-md-1"></div>
+			<div class="col-md-2"></div>
 		</div>
 		<br>
 		<br>
@@ -81,7 +84,7 @@
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<label for="tagline">Tagline</label>
-				<textarea class="form-control input-block input-lg" rows="3" id="tagline" placeholder="Ex: To allocate $2,000 to GC Miracle to fund stage costs for Dance Marathon 2017" required></textarea>
+				<textarea class="form-control input-block input-lg" rows="3" id="tagline" placeholder="Ex: To allocate $2,000 to GC Miracle to fund stage costs for Dance Marathon 2017"></textarea>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
@@ -102,16 +105,7 @@
 	</div>
 </div>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script src="/js/upload.js"></script>
-<script type="text/javascript">
-	function changeTextBox() {
-		if(document.getElementById("doctypeSelect").value === "res") {
-			document.getElementById("dollarText").disabled=true;
-		} else {
-			document.getElementById("dollarText").disabled=false;
-		}
-	}
-</script>
+<script src="../public/js/upload.js"></script>
 <script>
 	angular
 	.module(‘app’)
@@ -128,6 +122,7 @@
 		    if (!$scope.uploader.queue[0]) 
 		    	return;
 		    $scope.uploader.queue[0].upload(); 
+		    	document.write("it worked!!!")
 	  	}
 	}
 </script>

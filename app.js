@@ -1,21 +1,31 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
 var multiparty = require('connect-multiparty')();
-var User = require('../models/User');
+
+//Error when run: cannot find module, './models/User'
+//var User = require('../models/User');
+
 var fs = require('fs');
 var mongoose = require('mongoose');
 var Gridfs = require('gridfs-stream');
+
+mongoose.connect('mongodb://localhost/sgadb');
+
 router.post('/upload/:id', multiparty, function(req, res){
    var db = mongoose.connection.db;
    var mongoDriver = mongoose.mongo;
    var gfs = new Gridfs(db, mongoDriver);
+
    var writestream = gfs.createWriteStream({
      filename: req.files.file.name,
      mode: 'w',
      content_type: req.files.file.mimetype,
      metadata: req.body
    });
+
    fs.createReadStream(req.files.file.path).pipe(writestream);
+
    writestream.on('close', function(file) {
       User.findById(req.params.id, function(err, user) {
         // handle error
@@ -24,13 +34,19 @@ router.post('/upload/:id', multiparty, function(req, res){
           // handle error
           return res.json(200, updatedUser)
         })
+        console.log('success')
       });
+
       fs.unlink(req.files.file.path, function(err) {
         // handle error
         console.log('success!')
       });
    });
-}
+});
+
+var server = app.listen(3000, function(){
+  console.log('Server listening on port 3000');
+});
 
 /*var express = require('express');
 var app = express();
