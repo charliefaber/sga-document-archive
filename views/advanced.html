@@ -19,7 +19,7 @@
 	<div class="header">
 		<br>
 		<div class="logo">
-			<a href="./index.html"><img src="../public/images/logo.jpg" class="logoImg"></a>
+			<a href="/home"><img src="../public/images/logo.jpg" class="logoImg"></a>
 		</div>
 		
 		<div class="search">
@@ -30,18 +30,24 @@
 			
 			<br>
 			<input type="text" class="form-control input-md" id="search" name="searchText" placeholder="Enter your search query here..." required>
-			<a href="./results.html"><button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button></a>
-			<a href="./advanced.html">Advanced Search</a>
+			<a href="/results"><button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button></a>
+			<a href="/advanced">Advanced Search</a>
 		</div>
 		
 		<div class="menu">
-			<a href="./upload.html"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
-			<a href="./login.html"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
 		</div>
 	</div>
 	
 	<div class="containerdivNewLine"></div>
 	<hr>
+	<form ref='advancedForm'
+		  id='advancedForm'
+		  action='http://localhost:3000/upload' 
+		  method="post"
+		  enctype="multipart/form-data">
+	<fieldset>
 	<div class="searchOptions">
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
@@ -50,11 +56,12 @@
 			</div>
 			<div class="col-md-1"></div>
 		</div>
-
+		<form>
+			<fieldset>
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<input type="text" id="docText" class="form-control input-block input-lg" placeholder="Enter your search query here...">
+				<input name="searchText" type="text" id="docText" class="form-control input-block input-lg" placeholder="Enter your search query here...">
 				<br>
 			</div>
 			<div class="col-md-1"></div>
@@ -75,12 +82,12 @@
 				<fieldset>
 				<div class="col-md-2">
 					<div class="radio">
-						<label><input type="radio" name="spanOpt">Tagline Only</label>
+						<label><input type="radio" name="spanMin">Tagline Only</label>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="radio">
-						<label><input type="radio" name="spanOpt" checked="true">Entire Document</label>
+						<label><input type="radio" name="spanMax" checked="true">Entire Document</label>
 					</div>			
 				</div>
 				</fieldset>
@@ -111,12 +118,12 @@
 				<fieldset>
 					<div class="col-md-2">
 						<div class="checkbox">
-							<label><input type="checkbox" id="billCheck" checked="true" onchange="changeAmountBox()">Bills</label>
+							<label><input type="checkbox" name="billCheck" id="billCheck" checked="true" onchange="changeAmountBox()">Bills</label>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="checkbox">
-							<label><input type="checkbox" checked="true" id="resCheck">Resolutions</label>
+							<label><input type="checkbox" name="billCheck" checked="true" id="resCheck">Resolutions</label>
 						</div>			
 					</div>
 				</fieldset>
@@ -124,8 +131,8 @@
 			<div class="col-md-7"></div>
 		</div>
 
-		<div class="row no-gutter">
-			<div class="col-md-1"></div>
+		<div class="row no-gutte\
+		s="col-md-1"></div>
 			<div class="col-md-10">
 				<hr>
 				<h4>Year Range to Search:</h4>
@@ -179,11 +186,13 @@
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<a href="./results.html"><button type="button" class="btn btn-primary btn-block btn-lg">Search</button></a>
+				<a href="/results"><button type="submit" class="btn btn-primary btn-block btn-lg">Search</button></a>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 	</div>
+	</fieldset>
+	</form>
 	<br>
 	<br>
 	<br>

@@ -20,10 +20,10 @@
 		<div class="row no-gutter">
 			<div class="col-md-10"></div>
 			<div class="col-md-1">
-				<a href="./upload.html"><button type="button" class="btn btn-default btn-md btn-block">Upload</button></a>
+				<a href="/upload"><button type="button" class="btn btn-default btn-md btn-block">Upload</button></a>
 			</div>
 			<div class="col-md-1">
-				<a href="./login.html"><button type="button" class="btn btn-primary btn-md btn-block">Sign In</button></a>
+				<a href="/login"><button type="button" class="btn btn-primary btn-md btn-block">Sign In</button></a>
 			</div>
 		</div>
 		<br><br>
@@ -34,29 +34,36 @@
 		<div class="row no-gutter">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<a href="./index.html"><img src="../public/images/logo.jpg" alt="logo" id="logo"></a>
+				<a href="/home"><img src="../public/images/logo.jpg" alt="logo" id="logo"></a>
 			</div>
 			<div class="col-md-4"></div>
 		</div>	
 		<h3 style="font-weight: bold;">Georgia College Student Government Association</h3>
 		<h3 style="font-style: italic;">Document Archive</h3>
 		<br><br>
-
+		<form ref="searchForm"
+			  id="searchForm"
+			  action="http://localhost:3000/search"
+			  method="post"
+			  enctype="form-data">
+			<fieldset>
 			<div class="row no-gutter">
 				<div class="col-md-2"></div>
 				<div class="col-md-6">
 					<input type="text" class="form-control input-lg input-block" name="searchText" id="search" placeholder="Enter your search query here..." required/>
 				</div>
 				<div class="col-md-2">
-					<a href="./results.html"><button type="submit" name="searchBtn" class="btn btn-primary btn-block btn-lg">Search</button></a>
+					<button type="submit" name="searchBtn" class="btn btn-primary btn-block btn-lg">Search</button>
 				</div>
 				<div class="col-md-2"></div>
 			</div>
+			</fieldset>
+		</form>
 
 		<div class="row no-gutter">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<p style="float: left"><a href="advanced.html">Advanced Search</a></p>
+				<p style="float: left"><a href="/advanced">Advanced Search</a></p>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
