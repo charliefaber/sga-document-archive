@@ -57,7 +57,7 @@ app.get('/advanced', function(req, res) {
   res.sendFile(path.join(__dirname, "views/advanced.html"));
 });
 
-app.post('/search', function(req, res, next) {
+app.post('/search', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
 
@@ -67,16 +67,36 @@ app.post('/search', function(req, res, next) {
       {$text: {$search: search}},
       {score: {$meta: "textScore"}}
     ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
-        console.log(JSON.stringify(items));
-      
+    console.log(JSON.stringify(items));
+            var p = path.join(__dirname, "/views/results.html");
+    return res.sendFile(p);
+    console.log(items[0].parse._id);
+    console.log(json.path);
+      document.getElementByID("addDiv").innerHTML = `   <div class="row no-gutter">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h2></h2>
+      <span style="font-size: 1.2em; font-style: italic;">Date: </span><br>
+      <span style="font-weight: bold">To approve the appointment of Andrew Neiner as the Attorney General of the Student Government Association for the 2017-2018 session of the Student Government Association. </span><br><br>
+      <p>WHEREAS, Justice Neiner has severed as a Justice on the Student Judicial Board from fall of 2015 to the present, serving during the previous two Student Government Association sessions; 
+
+      WHEREAS, Justice Neiner has been present as a Student Justice in over 30 hearings and understands the hearing process as well as the role of the Attorney General in and throughout the hearing process; 
+
+      WHEREAS, Justice Neiner has worked under Attorney General Shelby Weitzel and Mary Atkins from whom he learned how to handle Student Code of Conduct and Honor Code violations; 
+
+      WHEREAS, Justice Neiner has a relationship with the Office of Student Affairs staff, most of whom also currently serve as advisors to the Student Government Association; 
+
+      WHEREAS, Justice Neiner’s experience as an SGA Student Justice and work within Student Affairs employee has allowed him to work with and fully understand the Student Code of Conduct and Honor Code; 
+
+      THEREFORE BE IT RESOLVED, that the Student Government Association of Georgia College formally approves the appointment of Andrew Neiner as the Attorney General of the Student Government Association for the 2017-2018 session of the Student Government Association
+      </p><br>
+    </div>
+    <div class="col-md-2"></div>
+  </div>`;
     });
 
     db.close();
   });
-  next();
-}, function(req, res) {
-    var p = path.join(__dirname, "/views/results.html");
-    return res.sendFile(p);
 });
 
 
