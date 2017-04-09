@@ -90,10 +90,8 @@ app.get('/advanced', function(req, res) {
 
 app.post('/advancedSearch', function(req, res) {
   var search = req.body.searchText;
-  
   var radio1 = req.body.radio1;
   var radio2 = req.body.radio2;
-
   var check1 = req.body.check1;
   var check2 = req.body.check2;
   var yearMin = req.body.yearMin;
@@ -110,8 +108,103 @@ app.post('/advancedSearch', function(req, res) {
   console.log(yearMax);
   console.log(amtMin);
   console.log(amtMax);
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+  if(radio1 === undefined) {
+    if(check1 != undefined) {
+      if(yearMin === undefined || yearMin === "") {
+        yearMin = 1889;
+      }
+      if(yearMax === undefined || yearMax == "") {
+        yearMax === 3000;
+      }
+      if(amtMin === undefined || amtMin == "") {
+        amtMin = 0;
+      }
+      if(amtMin === undefined || amtMin == "") {
+        amtMax = 100000;
+      }
+      //Mongo query
+      db.collection('documents').find( { date : { $lt : yearMax}, 
+                                         date : { $gt : yearMin},
+                                         amount : { $lt : yearMax},
+                                         amount : { $gt : yearMin},
+                                         $text: {$search: search},
+                                         score: {$meta: "textScore"}}
+      ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
+        res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items });
+      });
+
+    }
+    else if(check1 === undefined) {
+      if(yearMin === undefined || yearMin == "") {
+        yearMin = 1889;
+      }
+      if(yearMax === undefined || yearMax =="") {
+        yearMax === 3000;
+      }
+      db.collection('documents').find( { date : { $lt : yearMax}, 
+                                         date : { $gt : yearMin},
+                                         $text: {$search: search},
+                                         score: {$meta: "textScore"}}
+      ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
+        res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items });
+      });
+      //Mongo query
+    }
+  }
+  else if(radio1 != undefined) {
+    if(check1 != undefined) {
+        if(yearMin === undefined || yearMin == "") {
+          yearMin = 1889;
+        }
+        if(yearMax === undefined || yearMax == "") {
+          yearMax === 3000;
+        }
+        if(amtMin === undefined || amtMin =="") {
+          amtMin = 0;
+        }
+        if(amtMin === undefined || amtMin == "") {
+          amtMax = 100000;
+        }
+        //Mongo query
+      db.collection('documents').find( { date : { $lt : yearMax}, 
+                                         date : { $gt : yearMin},
+                                         amount : { $lt : yearMax},
+                                         amount : { $gt : yearMin},
+                                         $tagline: {$search: search},
+                                         score: {$meta: "textScore"}}
+      ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
+        res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items });
+      });
+    }
+    else if(check1 === undefined) {
+        if(yearMin === undefined || yearMin == "" ) {
+          yearMin = 1889;
+        }
+        if(yearMax === undefined || yearMax == "") {
+          yearMax === 3000;
+        }
+        //Mongo query
+      db.collection('documents').find( { date : { $lt : yearMax}, 
+                                         date : { $gt : yearMin},
+                                         $text: {$search: search},
+                                         score: {$meta: "textScore"}}
+      ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
+        res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items });
+      });
+
+    }
+  }
+  db.close();
+
+});
 
 
+        
+      
+    
+  
 });
 
 app.get('/download/:file(*)', function(req, res){
