@@ -20,7 +20,7 @@
 	<div class="header">
 		<br>
 		<div class="logo">
-			<a href="/home"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logoImg"></a>
+			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logoImg"></a>
 		</div>
 		
 		<div class="search">
@@ -30,8 +30,16 @@
 			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
 			
 			<br>
+			<form ref="searchForm"
+			  id="searchForm"
+			  action="http://localhost:3000/search"
+			  method="post"
+			  enctype="form-data">
+			<fieldset>
 			<input type="text" class="form-control input-md" id="search" name="searchText" placeholder="Enter your search query here..." required>
-			<a href="/results"><button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button></a>
+			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button>
+			</fieldset>
+			</form>
 			<a href="/advanced">Advanced Search</a>
 		</div>
 		
@@ -45,7 +53,7 @@
 	<hr>
 	<form ref='advancedForm'
 		  id='advancedForm'
-		  action='http://localhost:3000/upload' 
+		  action='http://localhost:3000/advancedSearch' 
 		  method="post"
 		  enctype="multipart/form-data">
 	<fieldset>
@@ -79,20 +87,18 @@
 
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
-			<form>	
-				<fieldset>
+
 				<div class="col-md-2">
 					<div class="radio">
-						<label><input type="radio" name="spanMin">Tagline Only</label>
+						<label><input type="radio" name="radio1">Tagline Only</label>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="radio">
-						<label><input type="radio" name="spanMax" checked="true">Entire Document</label>
+						<label><input type="radio" name="radio2" checked="true">Entire Document</label>
 					</div>			
 				</div>
-				</fieldset>
-			</form>
+
 			<div class="col-md-7"></div>
 		</div>
 
@@ -115,20 +121,17 @@
 
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
-			<form>	
-				<fieldset>
 					<div class="col-md-2">
 						<div class="checkbox">
-							<label><input type="checkbox" name="billCheck" id="billCheck" checked="true" onchange="changeAmountBox()">Bills</label>
+							<label><input type="checkbox" name="check1" id="billCheck" checked="true" onchange="changeAmountBox()">Bills</label>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="checkbox">
-							<label><input type="checkbox" name="billCheck" checked="true" id="resCheck">Resolutions</label>
+							<label><input type="checkbox" name="check2" checked="true" id="resCheck">Resolutions</label>
 						</div>			
 					</div>
-				</fieldset>
-			</form>
+
 			<div class="col-md-7"></div>
 		</div>
 
@@ -169,7 +172,7 @@
 				<label>Minimum<input type="text" name="amtMin" id="amtMin" class="form-control input-block" placeholder="0.00"></label>
 			</div>
 			<div class="col-md-3">
-				<label>Maximum<input type="text" name="matMax" id="amtMax" class="form-control input-block" placeholder="1,000,000.00"></label>
+				<label>Maximum<input type="text" name="amtMax" id="amtMax" class="form-control input-block" placeholder="1,000,000.00"></label>
 			</div>
 			<div class="col-md-5"></div>
 		</div>
@@ -187,7 +190,7 @@
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<a href="/results"><button type="submit" class="btn btn-primary btn-block btn-lg">Search</button></a>
+				<button type="submit" class="btn btn-primary btn-block btn-lg">Search</button>
 
 	
 	<br>

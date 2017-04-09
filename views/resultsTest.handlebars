@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SGA Document Archive - Results</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../public/css/results.css"></head>
+</head>
+<body style="background-image: url('../public/images/background.jpg'")>
+<br>
+<div class="container">
+	
+
+	<div class="header">
+		<br>
+		<div class="logo">
+			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logoImg"></a>
+		</div>
+		
+		<div class="search">
+			<br>
+			<h2 style="font-weight: bold;">Georgia College<br></h2>
+			<h3>Student Government Association</h3>
+			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
+			
+			<br>
+			<form ref="searchForm"
+			  id="searchForm"
+			  action="http://localhost:3000/search"
+			  method="post"
+			  enctype="form-data">
+			<fieldset>
+			<input value="{{search}}" type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
+			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button>
+			</fieldset>
+			</form>
+			<a href="/advanced">Advanced Search</a>
+		</div>
+		
+		<div class="menu">
+			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+		</div>
+	</div>
+	
+	<div class="containerdivNewLine"></div>
+	<hr>
+
+	<div class="row no-gutter">
+		<div class="col-md-8"></div>
+		<div class="col-md-3">
+			<label for="filterSelect">Filter Results By:</label>
+			<select id="filterSelect" name="filterSelect" class="input-md form-control" onchange="changeTextBox();">
+				<option value="relevancy" selected>Most Relevant</option>
+				<option value="recency">Most Recent</option>
+				<option value="highest">Highest Dollar Amount</option>
+				<option value="lowest">Lowest Dollar Amount</option>
+			</select>
+		</div>
+		<div class="col-md-1"></div>
+
+	</div>
+	<br>
+	<div id="results">
+
+	 {{#if items}}
+	 	{{#each items}}
+
+	 		<div class="row no-gutter"> 
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<h2>{{inc @index}}. {{this._id}}</h2>
+					<span style="font-size: 1.2em; font-style: italic;">Date: {{this.date}}</span><br>
+
+
+					<span style="font-weight: bold">{{this.tagline}}</span><br><br>
+					<div class="panel-group">
+					  <div class="panel panel-default">
+					    <div class="panel-heading">
+					      <h4 class="panel-title">
+					        <a data-toggle="collapse" href="#collapse{{inc @index}}">Click here to see full text of {{this._id}}</a>
+					      </h4>
+					    </div>
+					    <div id="collapse{{inc @index}}" class="panel-collapse collapse">
+					      <div class="panel-body">{{this.text}}</div>
+					    </div>
+					  </div>
+					</div>
+					
+					<a href="/download/{{this._id}}"><span style="display: inline; float: right">Download Original File</span></a>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+	 		
+	 	{{/each}}
+	 {{/if}}
+
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</div>
+<br>
+</body>
+</html>

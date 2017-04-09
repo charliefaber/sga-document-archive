@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SGA Document Archive - Results</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../public/css/results.css"></head>
+</head>
+<body style="background-image: url('../public/images/background.jpg'")>
+<br>
+<div class="container">
+	
+
+	<div class="header">
+		<br>
+		<div class="logo">
+			<a href="/home"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logoImg"></a>
+		</div>
+		
+		<div class="search">
+			<br>
+			<h2 style="font-weight: bold;">Georgia College<br></h2>
+			<h3>Student Government Association</h3>
+			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
+			
+			<br>
+			<input type="text" class="form-control input-md" id="search" name="searchText" placeholder="Enter your search query here..." required>
+			<a href="/results"><button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button></a>
+			<a href="/advanced">Advanced Search</a>
+		</div>
+		
+		<div class="menu">
+			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+		</div>
+	</div>
+	
+	<div class="containerdivNewLine"></div>
+	<hr>
+
+	<div class="row no-gutter">
+		<div class="col-md-8"></div>
+		<div class="col-md-3">
+			<label for="filterSelect">Filter Results By:</label>
+			<select id="filterSelect" name="filterSelect" class="input-md form-control" onchange="changeTextBox();">
+				<option value="relevancy" selected>Most Relevant</option>
+				<option value="recency">Most Recent</option>
+				<option value="highest">Highest Dollar Amount</option>
+				<option value="lowest">Lowest Dollar Amount</option>
+			</select>
+		</div>
+		<div class="col-md-1"></div>
+
+	</div>
+	<br>
+	<div id="results">
+
+	<% if (test.length > 0) %>
+		<% test.forEach(item in items) %>
+			<div class="row no-gutter"> 
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<h2><%= item["_id"] %></h2>
+					<span style="font-size: 1.2em; font-style: italic;">Date: <?=items[i]["date"]?></span><br>
+					<span style="font-weight: bold"><?=items[i]["tagline"]?></span><br><br>
+					<p></p>
+					<br>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+
+		<% %>
+	<%  %>
+
+	<div class="row no-gutter">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<h2>SR1617.01</h2>
+			<span style="font-size: 1.2em; font-style: italic;">Date: </span><br>
+			<span style="font-weight: bold">To approve the appointment of Andrew Neiner as the Attorney General of the Student Government Association for the 2017-2018 session of the Student Government Association. </span><br><br>
+			<p>WHEREAS, Justice Neiner has severed as a Justice on the Student Judicial Board from fall of 2015 to the present, serving during the previous two Student Government Association sessions; 
+
+			WHEREAS, Justice Neiner has been present as a Student Justice in over 30 hearings and understands the hearing process as well as the role of the Attorney General in and throughout the hearing process; 
+
+			WHEREAS, Justice Neiner has worked under Attorney General Shelby Weitzel and Mary Atkins from whom he learned how to handle Student Code of Conduct and Honor Code violations; 
+
+			WHEREAS, Justice Neiner has a relationship with the Office of Student Affairs staff, most of whom also currently serve as advisors to the Student Government Association; 
+
+			WHEREAS, Justice Neiner’s experience as an SGA Student Justice and work within Student Affairs employee has allowed him to work with and fully understand the Student Code of Conduct and Honor Code; 
+
+			THEREFORE BE IT RESOLVED, that the Student Government Association of Georgia College formally approves the appointment of Andrew Neiner as the Attorney General of the Student Government Association for the 2017-2018 session of the Student Government Association
+			</p>		<br>
+
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+
+	<div class="row no-gutter">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<h2>SR1617.01</h2>
+			<span style="font-size: 1.2em; font-style: italic;">Date: </span><br>
+			<span style="font-weight: bold">To approve the appointment of Andrew Neiner as the Attorney General of the Student Government Association for the 2017-2018 session of the Student Government Association. </span><br><br>
+			<p>WHEREAS, Justice Neiner has severed as a Justice on the Student Judicial Board from fall of 2015 to the present, serving during the previous two Student Government Association sessions; 
+
+			WHEREAS, Justice Neiner has been present as a Student Justice in over 30 hearings and understands the hearing process as well as the role of the Attorney General in and throughout the hearing process; 
+
+			WHEREAS, Justice Neiner has worked under Attorney General Shelby Weitzel and Mary Atkins from whom he learned how to handle Student Code of Conduct and Honor Code violations; 
+
+			WHEREAS, Justice Neiner has a relationship with the Office of Student Affairs staff, most of whom also currently serve as advisors to the Student Government Association; 
+
+			WHEREAS, Justice Neiner’s experience as an SGA Student Justice and work within Student Affairs employee has allowed him to work with and fully understand the Student Code of Conduct and Honor Code; 
+
+			THEREFORE BE IT RESOLVED, that the Student Government Association of Georgia College formally approves the appointment of Andrew Neiner as the Attorney General of the Student Government Association for the 2017-2018 session of the Student Government Association
+			</p><br>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+
+		<div class="row no-gutter">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<h2>SR1617.01</h2>
+			<span style="font-size: 1.2em; font-style: italic;">Date: </span><br>
+			<span style="font-weight: bold">To approve the appointment of Andrew Neiner as the Attorney General of the Student Government Association for the 2017-2018 session of the Student Government Association. </span><br><br>
+			<p>WHEREAS, Justice Neiner has severed as a Justice on the Student Judicial Board from fall of 2015 to the present, serving during the previous two Student Government Association sessions; 
+
+			WHEREAS, Justice Neiner has been present as a Student Justice in over 30 hearings and understands the hearing process as well as the role of the Attorney General in and throughout the hearing process; 
+
+			WHEREAS, Justice Neiner has worked under Attorney General Shelby Weitzel and Mary Atkins from whom he learned how to handle Student Code of Conduct and Honor Code violations; 
+
+			WHEREAS, Justice Neiner has a relationship with the Office of Student Affairs staff, most of whom also currently serve as advisors to the Student Government Association; 
+
+			WHEREAS, Justice Neiner’s experience as an SGA Student Justice and work within Student Affairs employee has allowed him to work with and fully understand the Student Code of Conduct and Honor Code; 
+
+			THEREFORE BE IT RESOLVED, that the Student Government Association of Georgia College formally approves the appointment of Andrew Neiner as the Attorney General of the Student Government Association for the 2017-2018 session of the Student Government Association
+			</p><br>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</div>
+<br>
+</body>
+</html>

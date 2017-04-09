@@ -19,7 +19,7 @@
 	<div class="header">
 		<br>
 		<div class="logo">
-			<a href="/home"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logoImg"></a>
+			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logoImg"></a>
 		</div>
 		
 		<div class="search">
@@ -29,8 +29,16 @@
 			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
 			
 			<br>
+			<form ref="searchForm"
+			  id="searchForm"
+			  action="http://localhost:3000/search"
+			  method="post"
+			  enctype="form-data">
+			<fieldset>
 			<input type="text" class="form-control input-md" id="search" name="searchText" placeholder="Enter your search query here..." required>
-			<a href="/results""><button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button></a>
+			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button>
+			</fieldset>
+			</form>
 			<a href="/advanced">Advanced Search</a>
 		</div>
 		
