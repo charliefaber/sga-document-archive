@@ -66,15 +66,19 @@
 	    	<div class="col-md-4"></div>
 	        <div class="col-md-4">
 	        	<br>
-	            <h4 style="font-style: italic; text-align: center">Welcome Back!</h4><br>
-	            <label for="userName">Username:</label>
-	            <input type="text" id="userName" class="form-control input-lg chat-input" placeholder="username" />
-	            <br>
-				<label for="userPassword">Password:</label>
-	            <input type="text" id="userPassword" class="form-control input-lg chat-input" placeholder="password" />
-	            <br>
-	            <a href="#" class="btn btn-success btn-block btn-lg">login <i class="fa fa-sign-in"></i></a>
+				<form action="/login" method="post">
+					<h4 style="font-style: italic; text-align: center">Welcome Back!</h4><br>
+					<label for="userName">Username:</label>
+					<input type="text" name = "username" id="userName" class="form-control input-lg chat-input" placeholder="username" />
+					<br>
+					<label for="userPassword">Password:</label>
+					<input type="text" name = "password" id="userPassword" class="form-control input-lg chat-input" placeholder="password" />
+					<br>
 
+					<input type="submit" value="Log In" class="btn btn-success btn-block btn-lg"/>
+					<br>
+				</form>
+	            <br>
 	        </div>   
 	        <div class="col-md-4"></div>
 	    </div>
