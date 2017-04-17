@@ -6,55 +6,49 @@ var fileUpload = require('express-fileupload');
 var exphbs = require('express-handlebars');
 var textract = require('textract');
 var path = require('path');
-var bodyParser = require('body-parser');
 var fs = require('fs');
 var jsonQuery = require('json-query');
-
-
-// MongoDB dependencies and variables
-var mongo = require('mongodb');
-var assert = require('assert');
-var MongoClient = mongo.MongoClient;
-var url = "mongodb://charliefaber:1234567890987654321@ds143340.mlab.com:43340/sgadb";
+var port = process.env.PORT || 3000;
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require = require('connect-flash');
 
 // Instantiate express variable
 var app = express();
-var hbs = exphbs.create({ 
+var hbs = exphbs.create({
   helpers: {
-    inc: function(num) {return num+1;} 
+    inc: function(num) {return num+1;}
   }
 });
 
-//configure passport
-app.configure(function() {
-  app.use(express.static('public'));
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.session({ secret: 'keyboard cat' }));
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(app.router);
-});
+var morgan = require('morgan');
+var cookieParser = require('cookie_parser')
+var bodyParser = require('body-parser');
+var session = require('express-session');
 
-var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+var configDB = require('./config/database.js');
+
+var mongo = require('mongodb');
+var assert = require('assert');
+//var MongoClient = mongo.MongoClient;
+
+mongoose.connect(configDB.url);
+
+require('./config/passport')(passport);
+
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(bodyParser());
 
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    users.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
+//for passport
+app.use(session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
+//routers
+require('./app/routes.js')(app, passport);
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -66,13 +60,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
-
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
- 
-  db.collection('documents').createIndex({text: "text"});
-  db.close();
-});
 
 
 app.get('/', function(req, res) {
@@ -242,30 +229,7 @@ app.post('/upload', function(req, res) {
   });
 });
 
-5
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    users.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-
-
-var server = app.listen(3000, function(){
+//launch
+var server = app.listen(port, function(){
   console.log('Server listening on port 3000');
 });
-
