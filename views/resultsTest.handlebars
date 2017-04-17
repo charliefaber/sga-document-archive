@@ -13,7 +13,6 @@
 </head>
 <body style="background-image: url('../public/images/background.jpg'")>
 <script type="text/javascript" src="../public/js/advanced.js"></script>
-
 <br>
 <div class="container">
 	
@@ -39,8 +38,7 @@
 			<fieldset>
 			<input value="{{search}}" type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
 			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button>
-			</fieldset>
-			</form>
+
 			<a href="/advanced">Advanced Search</a>
 		</div>
 		
@@ -51,43 +49,13 @@
 	</div>
 	
 	<div class="containerdivNewLine"></div>
-	
-
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-2">	
-			<h5>Span:</h5>
-			<label><input type="radio" name="radio" {{buttonVals.radioVal1}}>Tagline Only</label>
-			<label><input type="radio" name="radio" {{buttonVals.radioVal2}}>Entire Document</label>
-		</div>
-		<div class="col-md-2">
-			<h5>Document Types:</h5>
-			<label><input type="checkbox" name="check1" id="billCheck" {{buttonVals.checkVal1}} onchange="changeAmountBox()">Bills</label>
-			<br>
-			<label><input type="checkbox" name="check2" {{buttonVals.checkVal2}} id="resCheck"  onchange="changeAmountBox()">Resolutions</label>
-		</div>
-		<div class="col-md-2">
-			<h5>Years:</h5>
-			<label>Minimum:<input type="number" name="yearMin" value="{{buttonVals.yearMinVal}}" id="yearMin" class="form-control input-block input-sm" placeholder="2016"></label>
-			<label>Maximum:<input type="number" name="yearMax" value="{{buttonVals.yearMaxVal}}" id="yearMax" class="form-control input-block input-sm" placeholder="2017"></label>
-		</div>
-		<div class="col-md-2">
-			<h5>Amount:</h5>
-			<label>Minimum:<input type="text" name="amtMin" value="{{buttonVals.amtMinVal}}" id="amtMin" class="form-control input-block input-sm" placeholder="0.00"></label>
-			<label>Maximum:<input type="text" name="amtMax" value="{{buttonVals.amtMaxVal}}" id="amtMax" class="form-control input-block input-sm" placeholder="1,000,000.00"></label>
-
-		</div>
-
-		<div class="col-md-2"></div>
-
-	</div>
-<hr>
 	<br>
+<hr>
 	<div class="row">
 		<div class="col-md-8"></div>
 		<div class="col-md-3">
 			<label for="filterSelect">Filter Results By:
-			<select id="filterSelect" name="filterSelect" class="input-md form-control" onchange="changeTextBox();">
+			<select id="filterSelect" name="filterSelect" class="input-md form-control" onchange="changeFilterBox();">
 				<option value="relevancy" selected>Most Relevant</option>
 				<option value="recency">Most Recent</option>
 				<option value="highest">Highest Dollar Amount</option>
@@ -98,10 +66,12 @@
 		<div class="col-md-1"></div>
 	</div>
 	<br>
+	</fieldset>
+	</form>
 	<div id="results">
 
-	 {{#if items}}
-	 	{{#each items}}
+	 {{#if results}}
+	 	{{#each results}}
 
 	 		<div class="row no-gutter"> 
 				<div class="col-md-2"></div>
@@ -123,7 +93,7 @@
 					    </div>
 					  </div>
 					</div>
-					
+
 					<a href="/download/{{this._id}}"><span style="display: inline; float: right">Download Original File</span></a>
 				</div>
 				<div class="col-md-2"></div>

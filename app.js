@@ -92,63 +92,82 @@ app.get('/advanced', function(req, res) {
 app.post('/advancedSearch', function(req, res) {
   var search = req.body.advText;
 
-  var radio1 = "";
-  var radio2 = "";
-  if(req.body.radio == 'on') {radio1 = "checked"; radio2="";}
-  else {radio1=""; radio2 = "checked";}
-
   var check1 = "";
   if(req.body.check1 == 'on') {check1 = "checked";}
   var check2 = "";
   if(req.body.check2 == 'on') {check2 = "checked";}
 
+  var filter = req.body.filterSelect;
+  
+  console.log(filter);
   var yearMin = req.body.yearMin;
   var yearMax = req.body.yearMax;
 
+  if(yearMin == null || yearMin == undefined || yearMin == "") {
+    yearMin = 0;
+  }
+  if(yearMax == null || yearMax == undefined || yearMax == "") {
+    yearMax = 3000;
+  }
   var amtMin = req.body.amtMin;
   var amtMax = req.body.amtMax;
-  var buttonVals = {searchVal: search, radioVal1: radio1, radioVal2: radio2, checkVal1: check1, checkVal2: check2, yearMinVal: yearMin, yearMaxVal: yearMax, amtMinVal: amtMin, amtMaxVal: amtMax};
+
+  if(amtMin == null || amtMin == undefined || amtMin == "") {
+    amtMin = 0;
+  }
+  if(amtMax == null || amtMax == undefined || amtMax == "") {
+    amtMax = 100000;
+  }
+  var buttonVals = {searchVal: search, checkVal1: check1, checkVal2: check2, yearMinVal: yearMin, yearMaxVal: yearMax, amtMinVal: amtMin, amtMaxVal: amtMax};
   
   var results = [];
+  var resultsByDate = [];
+  var resultsByHighest = [];
+  var resultsByLowest = [];
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
 
-    if(radio1 == "checked") {
-      db.collection('documents').find(
-      {$tagline: {$search: search}},
-      {score: {$meta: "textScore"}}
-      ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
-    
-      results = items;
-      console.log(JSON.stringify(items));
-      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items, buttonVals: buttonVals});
-
-    });
-    }
-    else {
     db.collection('documents').find(
       {$text: {$search: search}},
       {score: {$meta: "textScore"}}
     ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
-      results = items;
 
       console.log(JSON.stringify(items));
-      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items, buttonVals: buttonVals});
-  
+      results = items.filter(function(item) {
+        // If both bill and resolution are selected
+        var year = new Date(item.date).getFullYear();
+        //console.log(year + "\n" + yearMin + ", " + yearMax + "\n" + item.amount + "\n" + amtMin + ", " + amtMax);
+        if(check1 == "checked" && check2 == "checked") {
+                    console.log("finished");
+          return(year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax)
+        }
+        else if(check1 == "checked") {
+          console.log("Option 2 run");
+
+          return(item.docType == "bill" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
+        }
+        else if(check2 == "checked") {
+          console.log("Option 3 run");
+          return(item.docType == "res" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
+        }
+        
+        resultsByDate = items.sort(function(a, b) {
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        resultsByHighest = items.sort(function(a, b) {
+          return b.amount - a.amount;
+        });
+
+        resultsByLowest = items.sort(function(a, b) {
+          return a.amount - b.amount;
+        });
+      });
+      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: results, resultsByDate: resultsByDate, resultsByHighest: resultsByHighest, resultsByLowest: resultsByLowest});
     });
-    }
-
-    if(check1 == "checked" && check2 =="checked") {
-
-    }
-    else if(check1 = "checked") {
-    }
-    else if(check2 = "checked") {
-    }
-    
     db.close();
   });
-
+ 
 
 });
 
