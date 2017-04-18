@@ -14,17 +14,24 @@
 <body style="background-image: url('../public/images/background.jpg'")>
 <script type="text/javascript" src="../public/js/advanced.js"></script>
 <br>
-<div class="container">
-	
+<script type="text/javascript">
 
+</script>
+<div class="container">
+	<br>
+		<div class="menu">
+			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+		</div>
 	<div class="header">
-		<br>
+		
 		<div class="logo">
-			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logoImg"></a>
+			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logo logoImg"></a>
 		</div>
 		
 		<div class="search">
-			<br>
+
+			
 			<h2 style="font-weight: bold;">Georgia College<br></h2>
 			<h3>Student Government Association</h3>
 			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
@@ -34,40 +41,32 @@
 			  id="searchForm"
 			  action="http://localhost:3000/search"
 			  method="post"
-			  enctype="form-data">
+			  enctype="multipart/form-data">
 			<fieldset>
-			<input value="{{search}}" type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
-			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button>
 
+			<input value="{{search}}" type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
+
+			<select id="filterSelect" name="filterSelect" class="input-md form-control">
+				<option value="relevancy" {{#if buttonVals.relevancy}}selected{{/if}}>Most Relevant</option>
+				<option value="recency" {{#if buttonVals.recency}}selected{{/if}}>Most Recent</option>
+				<option value="highest" {{#if buttonVals.highest}}selected{{/if}}>Highest Dollar Amount</option>
+				<option value="lowest" {{#if buttonVals.lowest}}selected{{/if}}>Lowest Dollar Amount</option>
+			</select>
+			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button><br><br>
 			<a href="/advanced">Advanced Search</a>
+			<br>
+			</fieldset>
+			</form>
 		</div>
 		
-		<div class="menu">
-			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
-			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
-		</div>
+
 	</div>
 	
 	<div class="containerdivNewLine"></div>
-	<br>
+<br>
 <hr>
-	<div class="row">
-		<div class="col-md-8"></div>
-		<div class="col-md-3">
-			<label for="filterSelect">Filter Results By:
-			<select id="filterSelect" name="filterSelect" class="input-md form-control" onchange="changeFilterBox();">
-				<option value="relevancy" selected>Most Relevant</option>
-				<option value="recency">Most Recent</option>
-				<option value="highest">Highest Dollar Amount</option>
-				<option value="lowest">Lowest Dollar Amount</option>
-			</select>
-			</label>
-		</div>
-		<div class="col-md-1"></div>
-	</div>
-	<br>
-	</fieldset>
-	</form>
+<br>
+
 	<div id="results">
 
 	 {{#if results}}
@@ -96,8 +95,15 @@
 
 					<a href="/download/{{this._id}}"><span style="display: inline; float: right">Download Original File</span></a>
 				</div>
+
 				<div class="col-md-2"></div>
 			</div>
+			
+	 		<div class="row no-gutter">
+	 			<div class="col-md-2"></div>
+	 			<div class="col-md-8"><hr></div>
+	 			<div class="col-md-2"></div>
+	 		</div>
 	 		
 	 	{{/each}}
 	 {{/if}}

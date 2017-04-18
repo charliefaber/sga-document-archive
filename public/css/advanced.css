@@ -29,21 +29,26 @@
 }
 
 .search {
-	width: 60%;
+	width: 80%;
 	float:left;
 }
 
 .search input {
-	width: 80%;
+	width: 40%;
+	float: left;
+	display: inline;
+}
+.search select {
+	width: 25%;
+	float: left;
+	display: inline;
+}
+.search button {
+	width: 15%;
 	float: left;
 	display: inline;
 }
 
-.search button {
-	width: 20%;
-	float: left;
-	display: inline;
-}
 
 .menu {
 	width: 20%;

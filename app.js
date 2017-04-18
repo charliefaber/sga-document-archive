@@ -21,8 +21,11 @@ var url = "mongodb://charliefaber:1234567890987654321@ds143340.mlab.com:43340/sg
 var app = express();
 var hbs = exphbs.create({ 
   helpers: {
-    inc: function(num) {return num+1;} 
+    inc: function(num) {return num+1;},
+    if1: function(num) {return num == 1;}
   }
+
+ 
 });
 
 //configure passport
@@ -89,87 +92,177 @@ app.get('/advanced', function(req, res) {
   res.sendFile(path.join(__dirname, "views/advanced.html"));
 });
 
-app.post('/advancedSearch', function(req, res) {
-  var search = req.body.advText;
+// ----- POST Methods -----
 
-  var check1 = "";
-  if(req.body.check1 == 'on') {check1 = "checked";}
-  var check2 = "";
-  if(req.body.check2 == 'on') {check2 = "checked";}
+// Simple search form query
+app.post('/search', function(req, res) {
+  // Initialize variables
+  var search = req.body.searchText;         // 
+  var filter = req.body.filterSelect;       // Selected filter value
+  var relevancy = false, recency = false, highest = false, lowest = false;
 
-  var filter = req.body.filterSelect;
-  
-  console.log(filter);
-  var yearMin = req.body.yearMin;
-  var yearMax = req.body.yearMax;
+  if(filter == null || filter == undefined || filter == "" || filter == "relevancy") {
+    relevancy = true;
+  }
+  else if(filter == "recency") {
+    recency = true;
+  }
+  else if(filter == "highest") {
+    highest = true;
+  }
+  else {
+    lowest = true;
+  }    
 
-  if(yearMin == null || yearMin == undefined || yearMin == "") {
-    yearMin = 0;
-  }
-  if(yearMax == null || yearMax == undefined || yearMax == "") {
-    yearMax = 3000;
-  }
-  var amtMin = req.body.amtMin;
-  var amtMax = req.body.amtMax;
 
-  if(amtMin == null || amtMin == undefined || amtMin == "") {
-    amtMin = 0;
-  }
-  if(amtMax == null || amtMax == undefined || amtMax == "") {
-    amtMax = 100000;
-  }
-  var buttonVals = {searchVal: search, checkVal1: check1, checkVal2: check2, yearMinVal: yearMin, yearMaxVal: yearMax, amtMinVal: amtMin, amtMaxVal: amtMax};
-  
-  var results = [];
-  var resultsByDate = [];
-  var resultsByHighest = [];
-  var resultsByLowest = [];
+
+  var buttonVals = {filter: filter, relevancy: relevancy, recency: recency, highest: highest, lowest: lowest};
+
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
+
 
     db.collection('documents').find(
       {$text: {$search: search}},
       {score: {$meta: "textScore"}}
     ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
-
       console.log(JSON.stringify(items));
-      results = items.filter(function(item) {
-        // If both bill and resolution are selected
-        var year = new Date(item.date).getFullYear();
-        //console.log(year + "\n" + yearMin + ", " + yearMax + "\n" + item.amount + "\n" + amtMin + ", " + amtMax);
-        if(check1 == "checked" && check2 == "checked") {
-                    console.log("finished");
-          return(year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax)
-        }
-        else if(check1 == "checked") {
-          console.log("Option 2 run");
 
-          return(item.docType == "bill" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
-        }
-        else if(check2 == "checked") {
-          console.log("Option 3 run");
-          return(item.docType == "res" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
-        }
-        
-        resultsByDate = items.sort(function(a, b) {
-          return new Date(b.date) - new Date(a.date);
+      if(filter == "recency") {
+        items.sort(function(a, b) {
+          console.log(new Date(a.date));
+          console.log(new Date(b.date));
+
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
         });
-
-        resultsByHighest = items.sort(function(a, b) {
+          //res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: results});
+        console.log("2");
+      }
+      else if(filter == "highest") {
+        items.sort(function(a, b) {
           return b.amount - a.amount;
         });
-
-        resultsByLowest = items.sort(function(a, b) {
+          //res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: results});
+        console.log("3");
+      }
+      else if(filter == "lowest") {
+        items.sort(function(a, b) {
           return a.amount - b.amount;
         });
+        console.log("4");
+      }
+      else {
+        console.log("1")
+      }
+      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: items });
+
+    });
+    //console.log(JSON.stringify(results));
+    db.close();
+  });
+
+});
+
+// Handles submission of advanced search form
+app.post('/advancedSearch', function(req, res) {
+
+// Initialize variables with values from form fields
+  var search = req.body.advText;                        // Search String
+  var filter = req.body.advFilterSelect;                // Selected value of filter dropdown
+  var relevancy = false, recency = false, highest = false, lowest = false;
+  // Store the value of each filter option in respective boolean variables
+  if(filter == null || filter == undefined || filter == "" || filter == "relevancy") 
+     relevancy = true;
+  else if(filter == "recency") 
+    recency = true;
+  else if(filter == "highest") 
+    highest = true;
+  else 
+    lowest = true;
+
+  // Document Type Checkboxes
+  var billCheck = "";               // Bill
+  var resCheck = "";                // Resolution
+  // If value of Checkbox is 'on', box is checked, therefore store "checked" in respective variable
+  if(req.body.billCheck == 'on') {billCheck = "checked";} 
+  if(req.body.resCheck == 'on') {resCheck = "checked";}
+  
+  // Year Range
+  var yearMin = req.body.yearMin;  
+  var yearMax = req.body.yearMax;
+  // If min or max not provided, assign default year range of 0 to 3000 
+  if(yearMin == null || yearMin == undefined || yearMin == "") 
+    yearMin = 0;
+  if(yearMax == null || yearMax == undefined || yearMax == "") 
+    yearMax = 3000;
+
+  // Amount Range
+  var amtMin = req.body.amtMin;
+  var amtMax = req.body.amtMax;
+  // If min or max not provided, assign default amount range of 0 to 100000 
+  if(amtMin == null || amtMin == undefined || amtMin == "") 
+    amtMin = 0;
+  if(amtMax == null || amtMax == undefined || amtMax == "") 
+    amtMax = 100000;
+  
+  // Store values of buttons in JavaScript object
+  var buttonVals = {filter: filter, relevancy: relevancy, recency: recency, highest: highest, lowest: lowest};
+
+// Connect to Mongo database
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);        // Check for errors
+
+    // Query documents collection
+    db.collection('documents').find(
+      {$text: {$search: search}},             // User's text passed in search variable
+      {score: {$meta: "textScore"}}           // Sort documents by score of match
+    ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) { // Convert to array
+      
+      // Filter the array based on the advanced form fields
+      items = items.filter(function(item) {
+        // Get year of current document being filtered
+        var year = new Date(item.date).getFullYear();
+
+        // If both bill and resolution are checked
+        if(billCheck == "checked" && resCheck == "checked") 
+          return(year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax)
+        // Else if only bill is checked
+        else if(billCheck == "checked") 
+          return(item.docType == "bill" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
+        // Else if only resolution is checked
+        else if(resCheck == "checked") {
+          return(item.docType == "res" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
+        }
       });
-      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: results, resultsByDate: resultsByDate, resultsByHighest: resultsByHighest, resultsByLowest: resultsByLowest});
+
+      // Use value of filter to determine how to sort results
+      if(filter == "recency") {       
+        // Sort based on recency of date           
+        items.sort(function(a, b) {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
+      }
+      else if(filter == "highest") {
+        // Sort based on amount of document, highest first
+        items.sort(function(a, b) {
+          return b.amount - a.amount;
+        });
+      }
+      else if(filter == "lowest") {
+        // Sort based on amount of document, lowest first
+        items.sort(function(a, b) {
+          return a.amount - b.amount;
+        });
+      }
+
+      // Render results handlebars template, passing variables containing search, button values, and sorted results
+      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: items});
     });
     db.close();
   });
- 
-
 });
+
+
 
 app.get('/download/:file(*)', function(req, res){
   var file = req.params.file
@@ -179,24 +272,6 @@ app.get('/download/:file(*)', function(req, res){
 });
 
 
-app.post('/search', function(req, res) {
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-
-    var search = req.body.searchText;
-
-    db.collection('documents').find(
-      {$text: {$search: search}},
-      {score: {$meta: "textScore"}}
-    ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
-
-      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items });
-
-      console.log(JSON.stringify(items));
-    });
-    db.close();
-  });
-});
 
 // POST for upload form submission
 app.post('/upload', function(req, res) {
