@@ -1,41 +1,40 @@
 //load passport strategy
-var LocalStrategy = require('passport-local').Stragey;
+var LocalStrategy = require('passport-local').Strategy;
 
 //load user model
-var User = require('../app/models/user');
+var User = require('../app/models/users');
 
-modeule.exports = function(passport){
+module.exports = function(passport){
 
     passport.serializeUser(function(user, done){
-        done(null, user.id);
+        done(null, users.id);
     });
 
     passport.deserializeUser(function(id,done){
-        User.findById(id, function(err, user)){
-            done(err,user);
+        User.findById(id, function(err, users){
+            done(err,users);
         });
     });
 
-    passport.use('local-login',
-        new LocalStrategy({
+    passport.use('local-login', new LocalStrategy({
             usernameField : 'id',
             passwordField: 'password',
             passReqToCallback : true
         },
         function(req, id, password, done){
 
-            User.findOne({'local.id' : id}, function(err, user){
+            User.findOne({'local.id' : id}, function(err, users){
 
                 if(err)
-                    return done(err);function
+                    return done(err);
 
-                if(!user)
+                if(!users)
                     return done(null, false, req.flash('loginMessage', 'No user found.'))
 
-                if(!user.validPassword(password))
+                if(!users.validPassword(password))
                     return done(null, false, req.flash('loginMessage', 'Wrong password'))
 
-                return done(null, user);
+                return done(null, users);
             });
      }));
 };

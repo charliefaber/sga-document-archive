@@ -11,7 +11,7 @@ var jsonQuery = require('json-query');
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
-var flash = require = require('connect-flash');
+var flash = require('connect-flash');
 
 // Instantiate express variable
 var app = express();
@@ -22,7 +22,7 @@ var hbs = exphbs.create({
 });
 
 var morgan = require('morgan');
-var cookieParser = require('cookie_parser')
+var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
@@ -39,6 +39,7 @@ require('./config/passport')(passport);
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser());
+
 
 
 //for passport

@@ -13,8 +13,8 @@ app.get('/', function(req, res) {
     ).sort({ date: -1}).limit(5).toArray(function(err, items) {
       res.render(path.join(__dirname, '/views/indexTest.handlebars'), { items: items });
     });
-  });
 });
+
 
 app.post('/search', function(req, res) {
 
@@ -109,16 +109,16 @@ app.post('/upload', function(req, res) {
 //LOGIN
 //
 app.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, "views/login.html"));
+  res.sendFile(path.join(__dirname, "./views/login.html"));
 });
 
 //process login
 app.post('/login', passport.authenticate('local-login', {
     successRedirect : '/',
-    failureRedirect : '/login'
+    failureRedirect : '/login',
     failureFlash : true
-
-}));
+    })
+);
 
 //
 //ADVANCED SEARCH PAGE
