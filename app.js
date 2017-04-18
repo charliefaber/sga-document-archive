@@ -22,12 +22,11 @@ var app = express();
 var hbs = exphbs.create({ 
   helpers: {
     inc: function(num) {return num+1;},
-    if1: function(num) {return num == 1;}
   }
 
  
 });
-
+/*
 //configure passport
 app.configure(function() {
   app.use(express.static('public'));
@@ -57,7 +56,7 @@ passport.use(new LocalStrategy(
     });
   }
 ));
-
+*/
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -171,7 +170,6 @@ app.post('/search', function(req, res) {
     //console.log(JSON.stringify(results));
     db.close();
   });
-
 });
 
 // Handles submission of advanced search form
@@ -336,7 +334,7 @@ app.post('/upload', function(req, res) {
   });
 });
 
-5
+/*5
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login',
@@ -358,7 +356,7 @@ passport.use(new LocalStrategy(
   }
 ));
 
-
+*/
 var server = app.listen(3000, function(){
   console.log('Server listening on port 3000');
 });
