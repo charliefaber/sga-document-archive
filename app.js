@@ -91,7 +91,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/upload', function(req, res) {
-  res.sendFile(path.join(__dirname, "views/upload.html"));
+  res.render(path.join(__dirname, "views/upload.handlebars"), {});
 });
 
 app.get('/login', function(req, res) {
@@ -305,8 +305,8 @@ app.post('/upload', function(req, res) {
     
     textract.fromFileWithPath(filePath, function( error, text ) {
       bodyText = text;
-      var p = path.join(__dirname, "views/results.html");
-      res.redirect(p);
+      //var p = path.join(__dirname, "views/results.html");
+      //res.redirect(p);
     });
     console.log(idText);
     console.log(doctypeSelect);
@@ -314,11 +314,10 @@ app.post('/upload', function(req, res) {
     console.log(dateSelect);
     console.log(tagText);
     console.log(bodyText);
-    console.log("");
-    console.log(req.body);
-    console.log(req.files);
-  });
 
+  });
+  var data = {idText: idText, doctypeSelect: doctypeSelect, dollarText: dollarText, dateSelect: dateSelect, tagText: tagText, bodyText: bodyText, success: true}
+  res.render(path.join(__dirname, '/views/upload.handlebars'), {data: data});
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
 
