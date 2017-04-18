@@ -62,7 +62,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 
-app.get('/', function(req, res) {
+/*app.get('/', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
 
@@ -74,7 +74,9 @@ app.get('/', function(req, res) {
     });
   });
 });
+*/
 
+/*
 app.get('/upload', function(req, res) {
   res.sendFile(path.join(__dirname, "views/upload.html"));
 });
@@ -86,6 +88,7 @@ app.get('/login', function(req, res) {
 app.get('/advanced', function(req, res) {
   res.sendFile(path.join(__dirname, "views/advanced.html"));
 });
+*/
 
 app.post('/advancedSearch', function(req, res) {
   var search = req.body.advText;

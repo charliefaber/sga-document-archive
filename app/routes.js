@@ -4,8 +4,6 @@ module.exports = function(app, passport){
 
 //HOME PAGE
 app.get('/', function(req, res) {
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
 
     var search = req.body.searchText;
 
@@ -26,7 +24,10 @@ app.get('/login', function(req, res) {
   res.sendFile(path.join(__dirname, "views/login.html"));
 });
 
+//ADVANCED SEARCH PAGE
 app.get('/advanced', function(req, res) {
   res.sendFile(path.join(__dirname, "views/advanced.html"));
 });
+
+
 }
