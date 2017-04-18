@@ -197,53 +197,49 @@ app.post('/upload', function(req, res) {
  
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file 
   var myFile = req.files.myFile;
-  var sContain = myFile.includes(".docx");
-  if(sContain){
-    var idText = req.body.idText;
-    var filePath = path.join(__dirname,`/uploads/${idText}.docx`);
+ 
+  var idText = req.body.idText;
+  var filePath = path.join(__dirname,`/uploads/${idText}.docx`);
 
-    doctypeSelect = req.body.doctypeSelect,
-        dollarText = req.body.dollarText,
-        dateSelect = req.body.dateSelect,
-        tagText = req.body.tagText,
-        bodyText = "";
-    // Use the mv() method to place the file somewhere on your server
-    myFile.mv(filePath, function(err) {
-      if (err)
-        return res.status(500).send(err);
-
-      textract.fromFileWithPath(filePath, function( error, text ) {
-        bodyText = text;
-        var p = path.join(__dirname, "views/results.html");
-        res.redirect(p);
-      });
-      console.log(idText);
-      console.log(doctypeSelect);
-      console.log(dollarText);
-      console.log(dateSelect);
-      console.log(tagText);
-      console.log(bodyText);
-      console.log("");
-      console.log(req.body);
-      console.log(req.files);
+  doctypeSelect = req.body.doctypeSelect,
+  dollarText = req.body.dollarText,
+  dateSelect = req.body.dateSelect,
+  tagText = req.body.tagText,
+  bodyText = "";
+  // Use the mv() method to place the file somewhere on your server 
+  myFile.mv(filePath, function(err) {
+    if (err)
+      return res.status(500).send(err);
+    
+    textract.fromFileWithPath(filePath, function( error, text ) {
+      bodyText = text;
+      var p = path.join(__dirname, "views/results.html");
+      res.redirect(p);
     });
+    console.log(idText);
+    console.log(doctypeSelect);
+    console.log(dollarText);
+    console.log(dateSelect);
+    console.log(tagText);
+    console.log(bodyText);
+    console.log("");
+    console.log(req.body);
+    console.log(req.files);
+  });
 
-    MongoClient.connect(url, function(err, db) {
-      assert.equal(null, err);
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
 
-      db.collection('documents').insertOne( {
-        "_id": idText,
-        "path": filePath,
-        "docType": doctypeSelect,
-        "amount": dollarText,
-        "date": dateSelect,
-        "tagline": tagText,
-        "text": bodyText});
-      db.close();
-    });}
-  else
-    return res.status(400).send('No Files were uploaded.');
-
+    db.collection('documents').insertOne( {
+      "_id": idText, 
+      "path": filePath,
+      "docType": doctypeSelect,
+      "amount": dollarText,
+      "date": dateSelect, 
+      "tagline": tagText, 
+      "text": bodyText});
+    db.close();
+  });
 });
 
 5
