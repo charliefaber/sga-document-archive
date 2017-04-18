@@ -10,7 +10,6 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var jsonQuery = require('json-query');
 
-
 // MongoDB dependencies and variables
 var mongo = require('mongodb');
 var assert = require('assert');
@@ -27,7 +26,7 @@ var hbs = exphbs.create({
 
  
 });
-
+/*
 //configure passport
 app.configure(function() {
   app.use(express.static('public'));
@@ -57,7 +56,7 @@ passport.use(new LocalStrategy(
     });
   }
 ));
-
+*/
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -336,12 +335,13 @@ app.post('/upload', function(req, res) {
   });
 });
 
-5
+/*
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login',
                                    failureFlash: true })
 );
+*/
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
