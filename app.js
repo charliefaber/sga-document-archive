@@ -9,7 +9,7 @@ var path = require('path');
 var fs = require('fs');
 var jsonQuery = require('json-query');
 var port = process.env.PORT || 3000;
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 
@@ -30,20 +30,19 @@ var configDB = require('./config/database.js');
 
 var mongodb = require('mongodb');
 var assert = require('assert');
-//var MongoClient = mongo.MongoClient;
+var MongoClient = require.MongoClient;
 
-mongoose.connect(configDB.url);
+//mongoose.connect(configDB.url);
 
 require('./config/passport')(passport);
 
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser());
-
-
 
 //for passport
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'keyboard cat',
+                  resave: true,
+                  saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

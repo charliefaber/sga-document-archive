@@ -1,4 +1,11 @@
 //app/routes.js
+var assert = require('assert');
+var MongoClient = require('mongodb').MongoClient,
+    test = require('assert');
+var configDb = require('../config/database.js');
+var path = require('path');
+var express = require('express');
+var app = express();
 
 module.exports = function(app, passport){
 
@@ -7,11 +14,12 @@ module.exports = function(app, passport){
 //
 app.get('/', function(req, res) {
 
-    var search = req.body.searchText;
+    MongoClient.connect(configDb.url, function(err, db) {
+    assert.equal(null, err);
 
     db.collection('documents').find(
     ).sort({ date: -1}).limit(5).toArray(function(err, items) {
-      res.render(path.join(__dirname, '/views/indexTest.handlebars'), { items: items });
+      res.render(path.join(__dirname, '../views/indexTest.handlebars'), { items: items });
     });
 });
 
@@ -19,7 +27,7 @@ app.get('/', function(req, res) {
 app.post('/search', function(req, res) {
 
   //fix DB CONNECTION
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);
 
     var search = req.body.searchText;
@@ -29,7 +37,7 @@ app.post('/search', function(req, res) {
       {score: {$meta: "textScore"}}
     ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
 
-      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items });
+      res.render(path.join(__dirname, '/../views/resultsTest.handlebars'), {search: search, items: items });
 
       console.log(JSON.stringify(items));
     });
@@ -39,16 +47,16 @@ app.post('/search', function(req, res) {
 
 app.get('/download/:file(*)', function(req, res){
   var file = req.params.file
-  var path = __dirname + "/uploads/" + file +".docx";
+  var path = __dirname + "../uploads/" + file +".docx";
 
   res.download(path);
 });
 
 //
 //UPLOAD
-//c
+//
 app.get('/upload', function(req, res) {
-  res.sendFile(path.join(__dirname, "views/upload.html"));
+  res.sendFile(path.join(__dirname, "/../views/upload.html"));
 });
 
 // POST for upload form submission
@@ -74,7 +82,7 @@ app.post('/upload', function(req, res) {
 
     textract.fromFileWithPath(filePath, function( error, text ) {
       bodyText = text;
-      var p = path.join(__dirname, "views/results.html");
+      var p = path.join(__dirname, "/../views/results.html");
       res.redirect(p);
     });
     console.log(idText);
@@ -89,7 +97,7 @@ app.post('/upload', function(req, res) {
     });
 
     //NEEDS TO BE FIXED WITH MONGOOSE
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(ConfigDb.url, function(err, db) {
     assert.equal(null, err);
 
     db.collection('documents').insertOne( {
@@ -109,7 +117,7 @@ app.post('/upload', function(req, res) {
 //LOGIN
 //
 app.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, "./views/login.html"));
+  res.sendFile(path.join(__dirname, "/../views/login.html"));
 });
 
 //process login
@@ -124,12 +132,13 @@ app.post('/login', passport.authenticate('local-login', {
 //ADVANCED SEARCH PAGE
 //
 app.get('/advanced', function(req, res) {
-  res.sendFile(path.join(__dirname, "views/advanced.html"));
+  res.sendFile(path.join(__dirname, "/../views/advanced.html"));
 });
 
 //
 //ADVANCED SEARCH CODE
 //
+
 app.post('/advancedSearch', function(req, res) {
   var search = req.body.advText;
 
@@ -151,7 +160,7 @@ app.post('/advancedSearch', function(req, res) {
   var buttonVals = {searchVal: search, radioVal1: radio1, radioVal2: radio2, checkVal1: check1, checkVal2: check2, yearMinVal: yearMin, yearMaxVal: yearMax, amtMinVal: amtMin, amtMaxVal: amtMax};
 
   var results = [];
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);
 
     if(radio1 == "checked") {
@@ -162,7 +171,7 @@ app.post('/advancedSearch', function(req, res) {
 
       results = items;
       console.log(JSON.stringify(items));
-      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items, buttonVals: buttonVals});
+      res.render(path.join(__dirname, '/../views/resultsTest.handlebars'), {search: search, items: items, buttonVals: buttonVals});
 
     });
     }
@@ -174,7 +183,7 @@ app.post('/advancedSearch', function(req, res) {
       results = items;
 
       console.log(JSON.stringify(items));
-      res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, items: items, buttonVals: buttonVals});
+      res.render(path.join(__dirname, '../views/resultsTest.handlebars'), {search: search, items: items, buttonVals: buttonVals});
 
     });
     }
@@ -188,11 +197,10 @@ app.post('/advancedSearch', function(req, res) {
     }
 
     db.close();
-  });
+    });
 
 
-});
+   });
 
-
-
-}
+   });
+};
