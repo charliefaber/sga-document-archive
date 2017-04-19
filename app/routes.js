@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
 
         db.collection('documents').find(
         ).sort({ date: -1}).limit(5).toArray(function(err, items) {
-            res.render(path.join(__dirname, '../views/indexTest.handlebars'), { items: items });
+            res.render(path.join(__dirname, '../views/index.handlebars'), { items: items });
         });
     });
 });
@@ -89,7 +89,7 @@ app.post('/search', function(req, res) {
       else {
         console.log("1")
       }
-      res.render(path.join(__dirname, '../views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: items });
+      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items });
 
     });
     //console.log(JSON.stringify(results));
@@ -137,7 +137,7 @@ app.post('/upload', function(req, res) {
 
     textract.fromFileWithPath(filePath, function( error, text ) {
       bodyText = text;
-      var p = path.join(__dirname, "../views/results.html");
+      var p = path.join(__dirname, "../views/index.handlebars");
       res.redirect(p);
     });
     console.log(idText);
@@ -285,7 +285,7 @@ app.post('/advancedSearch', function(req, res) {
       }
 
       // Render results handlebars template, passing variables containing search, button values, and sorted results
-      res.render(path.join(__dirname, '../views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: items});
+      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items});
     });
     db.close();
   });
