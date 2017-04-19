@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SGA Document Archive - Upload</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../public/css/upload.css"></head>
+<body style="background-image: url('../public/images/background.jpg'")>
+<br>
+<div class="container">
+	
+		<br>
+		<div class="menu">
+			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+		</div>
+	<div class="header">
+		
+		<div class="logo">
+			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logo logoImg"></a>
+		</div>
+		
+		<div class="search">
+
+			
+			<h2 style="font-weight: bold;">Georgia College<br></h2>
+			<h3>Student Government Association</h3>
+			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
+			
+			<br>
+			<form ref="searchForm"
+			  id="searchForm"
+			  action="http://localhost:3000/search"
+			  method="post"
+			  enctype="multipart/form-data">
+			<fieldset>
+
+			<input type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
+
+			<select id="filterSelect" name="filterSelect" class="input-md form-control">
+				<option value="relevancy" selected>Most Relevant</option>
+				<option value="recency">Most Recent</option>
+				<option value="highest">Highest Dollar Amount</option>
+				<option value="lowest">Lowest Dollar Amount</option>
+			</select>
+			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button><br><br>
+			<a href="/advanced">Advanced Search</a>
+			<br>
+			</fieldset>
+			</form>
+		</div>
+		
+
+	</div>
+	
+	<div class="containerdivNewLine"></div>
+<br>
+<hr>
+
+	{{#if data.success}}
+	<center>
+	<h2>File Successfully Uploaded!</h2>
+	<span style="font-size: 1.2em"><span style="font-weight: bold">ID: </span>{{data.idText}} </span><br>
+	<span style="font-size: 1.2em"><span style="font-weight: bold">Document Type: </span>{{data.doctypeSelect}} </span><br>
+	<span style="font-size: 1.2em"><span style="font-weight: bold">Amount: </span>{{data.dollarText}} </span><br>
+	<span style="font-size: 1.2em"><span style="font-weight: bold">Date: </span>{{data.dateSelect}} </span><br>
+	<span style="font-size: 1.2em"><span style="font-weight: bold">Tag: </span>{{data.tagText}} </span><br>
+	<span style="font-size: 1.2em"><span style="font-weight: bold">Text: </span>{{data.bodyText}} </span><br>
+	</center>
+	<hr>
+
+	{{/if}}
+	<br>
+	<div class="upload">
+		<form ref='uploadForm' 
+      		  id='uploadForm' 
+			  action='http://localhost:3000/upload' 
+      		  method='post' 
+      		  encType="multipart/form-data">
+      		<fieldset>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-4">
+					<h2 style="font-weight: bold;">Upload New Document</h2>
+					<img src="../public/images/newDoc.png" alt="newDoc" id="newDoc">
+					<br>
+
+        			<input type="file" name="myFile" required />
+        		</div>
+			
+				<div class="col-md-4">
+					<label for="docID">Document ID:</label>
+					<input type="text" placeholder="SB1617.01" name="idText" id="idText" class="btn-block input-lg" >
+					<br>
+
+					<label for="doctypeSelect">Document Type:</label>
+					<select id="doctypeSelect" name="doctypeSelect" class="input-lg form-control" onchange="changeTextBox();">
+					    <option value="bill" name="billSelect" selected>Bill</option>
+					    <option value="res" name="resSelect">Resolution</option>
+					</select>
+					<br>
+					<label for="dollarText">Dollar Amount:</label>
+					<input type="text" placeholder="0.00" name="dollarText" id="dollarText" class="btn-block input-lg" required>
+					
+					<br>
+
+					<label for="dateSelect">Date:</label>
+					<input type="date" class="btn-block input-lg" name="dateSelect" id="dateSelect" required>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			
+			<br>
+			<br>
+		
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<label for="tagline">Tagline</label>
+				<textarea class="form-control input-block input-lg" rows="3" id="tagText" name="tagText" placeholder="Ex: To allocate $2,000 to GC Miracle to fund stage costs for Dance Marathon 2017" required></textarea>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<br>
+		
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<a href="/upload"><button type="submit" class="btn-block btn-lg btn-success" id="upload-btn">Upload</button></a>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		</fieldset>
+		</form>
+		<br><br><br><br><br>
+	</div>
+</div>
+<br>
+<script type="text/javascript" src="../public/js/upload.js"></script>
+</body>
+</html>
