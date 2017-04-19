@@ -122,7 +122,7 @@ app.post('/upload', function(req, res) {
   var myFile = req.files.myFile;
 
   var idText = req.body.idText;
-  var filePath = path.join(__dirname,`/uploads/${idText}.docx`);
+  var filePath = path.join(__dirname,`../uploads/${idText}.docx`);
 
 
   doctypeSelect = req.body.doctypeSelect,
@@ -151,7 +151,7 @@ app.post('/upload', function(req, res) {
     console.log(req.files);
   });
 
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);
 
     db.collection('documents').insertOne( {
