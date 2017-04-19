@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SGA Document Archive - Login</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../public/css/login.css">
+</head>
+
+<body style="background-image: url('../public/images/background.jpg'")>
+<br>
+<div class="container">
+    <br>
+    <div class="menu">
+        <a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+        <a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+    </div>
+    <div class="header">
+
+        <div class="logo">
+            <a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logo logoImg"></a>
+        </div>
+
+        <div class="search">
+
+
+            <h2 style="font-weight: bold;">Georgia College<br></h2>
+            <h3>Student Government Association</h3>
+            <h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
+
+            <br>
+            <form ref="searchForm"
+                  id="searchForm"
+                  action="http://localhost:3000/search"
+                  method="post"
+                  enctype="form-data">
+                <fieldset>
+
+                    <input type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
+
+                    <select id="filterSelect" name="filterSelect" class="input-md form-control">
+                        <option value="relevancy" selected>Most Relevant</option>
+                        <option value="recency">Most Recent</option>
+                        <option value="highest">Highest Dollar Amount</option>
+                        <option value="lowest">Lowest Dollar Amount</option>
+                    </select>
+                    <button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button><br><br>
+                    <a href="/advanced">Advanced Search</a>
+                    <br>
+                </fieldset>
+            </form>
+        </div>
+
+
+    </div>
+
+    <div class="containerdivNewLine"></div>
+    <br>
+    <hr>
+
+
+
+    <div class="login">
+        <div class="row no-gutter">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <h2 style="font-weight: bold;text-align: center">User Login</h2>
+                <img src="../public/images/key.png" id="key" name="key" alt="login">
+            </div>
+            <div class="col-md-4"></div>
+
+        </div>
+        <div class="row no-gutter">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <br>
+                <form action="/login" method="post">
+                    <h4 style="font-style: italic; text-align: center">Welcome Back!</h4><br>
+                    <label for="userName">Username:</label>
+                    <input type="text" name = "username" id="userName" class="form-control input-lg chat-input" placeholder="username" />
+                    <br>
+                    <label for="userPassword">Password:</label>
+                    <input type="text" name = "password" id="userPassword" class="form-control input-lg chat-input" placeholder="password" />
+                    <br>
+
+                    <input type="submit" value="Log In" class="btn btn-success btn-block btn-lg"/>
+                    <br>
+                </form>
+                <br>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <br>
+        <br><br><br><br>
+        <br>
+        <br>
+
+    </div>
+</div>
+</body>
+<br>
+</html>
