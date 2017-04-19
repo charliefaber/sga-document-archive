@@ -15,15 +15,20 @@
 <body style="background-image: url('../public/images/background.jpg'")>
 <br>
 <div class="container">
-	
+	<br>
+		<div class="menu">
+			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+		</div>
 	<div class="header">
-		<br>
+		
 		<div class="logo">
-			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logoImg"></a>
+			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logo logoImg"></a>
 		</div>
 		
 		<div class="search">
-			<br>
+
+			
 			<h2 style="font-weight: bold;">Georgia College<br></h2>
 			<h3>Student Government Association</h3>
 			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
@@ -35,21 +40,29 @@
 			  method="post"
 			  enctype="form-data">
 			<fieldset>
-			<input type="text" class="form-control input-md" name="searchText" id="search" placeholder="Enter your search query here...">
-			<button type="submit" name="searchBtn" class="btn btn-primary btn-md" required>Search</button>
+
+			<input type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
+
+			<select id="filterSelect" name="filterSelect" class="input-md form-control">
+				<option value="relevancy" selected>Most Relevant</option>
+				<option value="recency">Most Recent</option>
+				<option value="highest">Highest Dollar Amount</option>
+				<option value="lowest">Lowest Dollar Amount</option>
+			</select>
+			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button><br><br>
 			<a href="/advanced">Advanced Search</a>
+			<br>
 			</fieldset>
 			</form>
 		</div>
 		
-		<div class="menu">
-			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
-			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
-		</div>
+
 	</div>
 	
 	<div class="containerdivNewLine"></div>
-	<hr>
+<br>
+<hr>
+
 
 	
 	<div class="login">

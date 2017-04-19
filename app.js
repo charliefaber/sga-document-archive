@@ -8,33 +8,37 @@ var textract = require('textract');
 var path = require('path');
 var fs = require('fs');
 var jsonQuery = require('json-query');
+
 var port = process.env.PORT || 3000;
 //var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 
+// MongoDB dependencies and variables
+var mongo = require('mongodb');
+var assert = require('assert');
+var MongoClient = mongo.MongoClient;
+var configDB = require('./config/database.js');
+
+
 // Instantiate express variable
 var app = express();
 var hbs = exphbs.create({
   helpers: {
-    inc: function(num) {return num+1;}
+
+    inc: function(num) {return num+1;},
+    inc: function(num) {return num+1;},
+    if1: function(num) {return num == 1;}
   }
 });
 
 var morgan = require('morgan');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var configDB = require('./config/database.js');
 
-var mongodb = require('mongodb');
-var assert = require('assert');
-var MongoClient = require.MongoClient;
-
-//mongoose.connect(configDB.url);
-
-require('./config/passport')(passport);
+require('./config/passport.js')(passport);
 
 app.use(morgan('dev'));
 app.use(cookieParser());
@@ -47,13 +51,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-//routers
-require('./app/routes.js')(app, passport);
-require('./config/passport')(passport);
-
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-
 app.use(fileUpload());
 
 app.use(bodyParser.urlencoded({
@@ -62,7 +59,28 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+//routers
+require('./app/routes.js')(app, passport);
+require('./config/passport')(passport);
+
+
 //launch
+/*
 var server = app.listen(port, function(){
+MongoClient.connect(configDB.url, function(err, db) {
+  assert.equal(null, err);
+ 
+  db.collection('documents').createIndex({text: "text"});
+  db.close();
+});
+});
+*/
+
+
+var server = app.listen(port, function(){
+
   console.log('Server listening on port 3000');
 });

@@ -6,6 +6,9 @@ var configDb = require('../config/database.js');
 var path = require('path');
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+var textract = require('textract');
+
 
 module.exports = function(app, passport){
 
@@ -17,46 +20,97 @@ app.get('/', function(req, res) {
     MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);
 
-    db.collection('documents').find(
-    ).sort({ date: -1}).limit(5).toArray(function(err, items) {
-      res.render(path.join(__dirname, '../views/indexTest.handlebars'), { items: items });
+        db.collection('documents').find(
+        ).sort({ date: -1}).limit(5).toArray(function(err, items) {
+            res.render(path.join(__dirname, '../views/indexTest.handlebars'), { items: items });
+        });
     });
 });
 
 
-app.post('/search', function(req, res) {
 
-  //fix DB CONNECTION
+// Simple search form query
+app.post('/search', function(req, res) {
+  // Initialize variables
+  var search = req.body.searchText;         //
+  var filter = req.body.filterSelect;       // Selected filter value
+  var relevancy = false, recency = false, highest = false, lowest = false;
+
+  if(filter == null || filter == undefined || filter == "" || filter == "relevancy") {
+    relevancy = true;
+  }
+  else if(filter == "recency") {
+    recency = true;
+  }
+  else if(filter == "highest") {
+    highest = true;
+  }
+  else {
+    lowest = true;
+  }
+
+
+
+  var buttonVals = {filter: filter, relevancy: relevancy, recency: recency, highest: highest, lowest: lowest};
+
   MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);
 
-    var search = req.body.searchText;
 
     db.collection('documents').find(
       {$text: {$search: search}},
       {score: {$meta: "textScore"}}
     ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
-
-      res.render(path.join(__dirname, '/../views/resultsTest.handlebars'), {search: search, items: items });
-
       console.log(JSON.stringify(items));
+
+      if(filter == "recency") {
+        items.sort(function(a, b) {
+          console.log(new Date(a.date));
+          console.log(new Date(b.date));
+
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
+          //res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: results});
+        console.log("2");
+      }
+      else if(filter == "highest") {
+        items.sort(function(a, b) {
+          return b.amount - a.amount;
+        });
+          //res.render(path.join(__dirname, '/views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: results});
+        console.log("3");
+      }
+      else if(filter == "lowest") {
+        items.sort(function(a, b) {
+          return a.amount - b.amount;
+        });
+        console.log("4");
+      }
+      else {
+        console.log("1")
+      }
+      res.render(path.join(__dirname, '../views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: items });
+
     });
+    //console.log(JSON.stringify(results));
     db.close();
   });
+
 });
 
 app.get('/download/:file(*)', function(req, res){
-  var file = req.params.file
-  var path = __dirname + "../uploads/" + file +".docx";
-
-  res.download(path);
+  var file = req.params.file;
+  console.log(file);
+  var p = path.join(__dirname, "../uploads/", file + ".docx");
+  console.log(p);
+  res.download(p);
 });
 
 //
 //UPLOAD
 //
 app.get('/upload', function(req, res) {
-  res.sendFile(path.join(__dirname, "/../views/upload.html"));
+  res.sendFile(path.join(__dirname, "../views/upload.html"));
 });
 
 // POST for upload form submission
@@ -70,6 +124,7 @@ app.post('/upload', function(req, res) {
   var idText = req.body.idText;
   var filePath = path.join(__dirname,`/uploads/${idText}.docx`);
 
+
   doctypeSelect = req.body.doctypeSelect,
   dollarText = req.body.dollarText,
   dateSelect = req.body.dateSelect,
@@ -82,7 +137,7 @@ app.post('/upload', function(req, res) {
 
     textract.fromFileWithPath(filePath, function( error, text ) {
       bodyText = text;
-      var p = path.join(__dirname, "/../views/results.html");
+      var p = path.join(__dirname, "../views/results.html");
       res.redirect(p);
     });
     console.log(idText);
@@ -94,10 +149,9 @@ app.post('/upload', function(req, res) {
     console.log("");
     console.log(req.body);
     console.log(req.files);
-    });
+  });
 
-    //NEEDS TO BE FIXED WITH MONGOOSE
-  MongoClient.connect(ConfigDb.url, function(err, db) {
+  MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
 
     db.collection('documents').insertOne( {
@@ -112,12 +166,11 @@ app.post('/upload', function(req, res) {
   });
 });
 
-
 //
 //LOGIN
 //
 app.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, "/../views/login.html"));
+  res.sendFile(path.join(__dirname, "../views/login.html"));
 });
 
 //process login
@@ -139,68 +192,102 @@ app.get('/advanced', function(req, res) {
 //ADVANCED SEARCH CODE
 //
 
+// Handles submission of advanced search form
 app.post('/advancedSearch', function(req, res) {
-  var search = req.body.advText;
 
-  var radio1 = "";
-  var radio2 = "";
-  if(req.body.radio == 'on') {radio1 = "checked"; radio2="";}
-  else {radio1=""; radio2 = "checked";}
+// Initialize variables with values from form fields
+  var search = req.body.advText;                        // Search String
+  var filter = req.body.advFilterSelect;                // Selected value of filter dropdown
+  var relevancy = false, recency = false, highest = false, lowest = false;
+  // Store the value of each filter option in respective boolean variables
+  if(filter == null || filter == undefined || filter == "" || filter == "relevancy")
+     relevancy = true;
+  else if(filter == "recency")
+    recency = true;
+  else if(filter == "highest")
+    highest = true;
+  else
+    lowest = true;
 
-  var check1 = "";
-  if(req.body.check1 == 'on') {check1 = "checked";}
-  var check2 = "";
-  if(req.body.check2 == 'on') {check2 = "checked";}
+  // Document Type Checkboxes
+  var billCheck = "";               // Bill
+  var resCheck = "";                // Resolution
+  // If value of Checkbox is 'on', box is checked, therefore store "checked" in respective variable
+  if(req.body.billCheck == 'on') {billCheck = "checked";}
+  if(req.body.resCheck == 'on') {resCheck = "checked";}
 
+  // Year Range
   var yearMin = req.body.yearMin;
   var yearMax = req.body.yearMax;
+  // If min or max not provided, assign default year range of 0 to 3000
+  if(yearMin == null || yearMin == undefined || yearMin == "")
+    yearMin = 0;
+  if(yearMax == null || yearMax == undefined || yearMax == "")
+    yearMax = 3000;
 
+  // Amount Range
   var amtMin = req.body.amtMin;
   var amtMax = req.body.amtMax;
-  var buttonVals = {searchVal: search, radioVal1: radio1, radioVal2: radio2, checkVal1: check1, checkVal2: check2, yearMinVal: yearMin, yearMaxVal: yearMax, amtMinVal: amtMin, amtMaxVal: amtMax};
+  // If min or max not provided, assign default amount range of 0 to 100000
+  if(amtMin == null || amtMin == undefined || amtMin == "")
+    amtMin = 0;
+  if(amtMax == null || amtMax == undefined || amtMax == "")
+    amtMax = 100000;
 
-  var results = [];
-  MongoClient.connect(configDb.url, function(err, db) {
-    assert.equal(null, err);
+  // Store values of buttons in JavaScript object
+  var buttonVals = {filter: filter, relevancy: relevancy, recency: recency, highest: highest, lowest: lowest};
 
-    if(radio1 == "checked") {
-      db.collection('documents').find(
-      {$tagline: {$search: search}},
-      {score: {$meta: "textScore"}}
-      ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
+// Connect to Mongo database
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);        // Check for errors
 
-      results = items;
-      console.log(JSON.stringify(items));
-      res.render(path.join(__dirname, '/../views/resultsTest.handlebars'), {search: search, items: items, buttonVals: buttonVals});
-
-    });
-    }
-    else {
+    // Query documents collection
     db.collection('documents').find(
-      {$text: {$search: search}},
-      {score: {$meta: "textScore"}}
-    ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) {
-      results = items;
+      {$text: {$search: search}},             // User's text passed in search variable
+      {score: {$meta: "textScore"}}           // Sort documents by score of match
+    ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) { // Convert to array
 
-      console.log(JSON.stringify(items));
-      res.render(path.join(__dirname, '../views/resultsTest.handlebars'), {search: search, items: items, buttonVals: buttonVals});
+      // Filter the array based on the advanced form fields
+      items = items.filter(function(item) {
+        // Get year of current document being filtered
+        var year = new Date(item.date).getFullYear();
 
+        // If both bill and resolution are checked
+        if(billCheck == "checked" && resCheck == "checked")
+          return(year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax)
+        // Else if only bill is checked
+        else if(billCheck == "checked")
+          return(item.docType == "bill" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
+        // Else if only resolution is checked
+        else if(resCheck == "checked") {
+          return(item.docType == "res" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
+        }
+      });
+
+      // Use value of filter to determine how to sort results
+      if(filter == "recency") {
+        // Sort based on recency of date
+        items.sort(function(a, b) {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
+      }
+      else if(filter == "highest") {
+        // Sort based on amount of document, highest first
+        items.sort(function(a, b) {
+          return b.amount - a.amount;
+        });
+      }
+      else if(filter == "lowest") {
+        // Sort based on amount of document, lowest first
+        items.sort(function(a, b) {
+          return a.amount - b.amount;
+        });
+      }
+
+      // Render results handlebars template, passing variables containing search, button values, and sorted results
+      res.render(path.join(__dirname, '../views/resultsTest.handlebars'), {search: search, buttonVals: buttonVals, results: items});
     });
-    }
-
-    if(check1 == "checked" && check2 =="checked") {
-
-    }
-    else if(check1 = "checked") {
-    }
-    else if(check2 = "checked") {
-    }
-
     db.close();
-    });
-
-
-   });
-
-   });
+  });
+});
 };

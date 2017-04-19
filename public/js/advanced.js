@@ -1,7 +1,5 @@
 function changeAmountBox() {
 
-
-	
 	if(document.getElementById("billCheck").checked) {
 		document.getElementById("amtMin").disabled = false;
 		document.getElementById("amtMax").disabled = false;

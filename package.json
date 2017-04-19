@@ -19,7 +19,9 @@
   "dependencies": {
     "angular": "^1.6.3",
     "angular-file-upload": "^2.5.0",
+    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.17.1",
+    "connect-flash": "^0.1.1",
     "connect-multiparty": "^2.0.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
@@ -34,12 +36,11 @@
     "method-override": "2.3.8",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.2",
+    "morgan": "^1.8.1",
     "ng-file-upload": "^12.2.13",
+    "node-dev": "^3.1.3",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "connect-flash": "^0.1.1",
-    "bcrypt-nodejs" : "^0.0.3",
-    "morgan" : "^1.8.1",
     "textract": "^2.1.2",
     "underscore": "^1.8.3"
   }

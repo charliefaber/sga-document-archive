@@ -15,8 +15,55 @@
 <br>
 <script type="text/javascript" src="../public/js/advanced.js"></script>
 <div class="container">
-	
+		<br>
+		<div class="menu">
+			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
+			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
+		</div>
+	<div class="header">
+		
+		<div class="logo">
+			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logo logoImg"></a>
+		</div>
+		
+		<div class="search">
 
+			
+			<h2 style="font-weight: bold;">Georgia College<br></h2>
+			<h3>Student Government Association</h3>
+			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
+			
+			<br>
+			<form ref="searchForm"
+			  id="searchForm"
+			  action="http://localhost:3000/search"
+			  method="post"
+			  enctype="multipart/form-data">
+			<fieldset>
+
+			<input type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
+
+			<select id="filterSelect" name="filterSelect" class="input-md form-control">
+				<option value="relevancy" selected>Most Relevant</option>
+				<option value="recency">Most Recent</option>
+				<option value="highest">Highest Dollar Amount</option>
+				<option value="lowest">Lowest Dollar Amount</option>
+			</select>
+			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button><br><br>
+			<a href="/advanced">Advanced Search</a>
+			<br>
+			</fieldset>
+			</form>
+		</div>
+		
+
+	</div>
+	
+	<div class="containerdivNewLine"></div>
+<br>
+<hr>
+
+<!-- 
 	<div class="header">
 		<br>
 		<div class="logo">
@@ -50,7 +97,7 @@
 	</div>
 	
 	<div class="containerdivNewLine"></div>
-	<hr>
+	<hr> -->
 	<form ref='advancedForm'
 		  id='advancedForm'
 		  action='http://localhost:3000/advancedSearch' 
@@ -65,47 +112,36 @@
 			</div>
 			<div class="col-md-1"></div>
 		</div>
-		<form>
-			<fieldset>
+
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
-			<div class="col-md-10">
+			<div class="col-md-6">
+				<div style="font-weight: bold;">Search Query:  </div>
+
 				<input name="advText" type="text" id="docText" class="form-control input-block input-lg" placeholder="Enter your search query here...">
 				<br>
 			</div>
-			<div class="col-md-1"></div>
-		</div>
-		<br>
+			<div class="col-md-4">
+				<div style="font-weight: bold;">Filter Results By: </div>
+				<select id="advFilterSelect" name="advFilterSelect" class="input-lg form-control">
+					<option value="relevancy" selected>Most Relevant</option>
+					<option value="recency">Most Recent</option>
+					<option value="highest">Highest Dollar Amount</option>
+					<option value="lowest">Lowest Dollar Amount</option>
+				</select>
 
-		<div class="row no-gutter">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<h4>Span of Search:</h4>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
+	
 
-		<div class="row no-gutter">
-			<div class="col-md-1"></div>
+<br>
 
-				<div class="col-md-2">
-					<div class="radio">
-						<label><input type="radio" name="radio">Tagline Only</label>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="radio">
-						<label><input type="radio" name="radio" checked="true">Entire Document</label>
-					</div>			
-				</div>
-
-			<div class="col-md-7"></div>
-		</div>
 
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<hr>
+				
 				<h4>Document Types to Search:</h4>
 			</div>
 			<div class="col-md-1"></div>
@@ -123,12 +159,12 @@
 			<div class="col-md-1"></div>
 					<div class="col-md-2">
 						<div class="checkbox">
-							<label><input type="checkbox" name="check1" id="billCheck" checked="true" onchange="changeAmountBox()">Bills</label>
+							<label><input type="checkbox" name="billCheck" id="billCheck" checked="true" onchange="changeAmountBox()">Bills</label>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="checkbox">
-							<label><input type="checkbox" name="check2" checked="true" id="resCheck" onchange="changeAmountBox()">Resolutions</label>
+							<label><input type="checkbox" name="resCheck" checked="true" id="resCheck" onchange="changeAmountBox()">Resolutions</label>
 						</div>			
 					</div>
 
@@ -177,25 +213,18 @@
 			<div class="col-md-5"></div>
 		</div>
 
-		<div class="row no-gutter">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<hr>
-			</div>
-			<div class="col-md-1"></div>
-		</div>
 
-		<br>
+
+
+		<br><br>
 
 		<div class="row no-gutter">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<button type="submit" id="advBtn" class="btn btn-primary btn-block btn-lg">Search</button>
-
-	
-	<br>
-	<br>
-	<br>	<br>
+			<br>
+			<br>
+			<br>	<br>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
