@@ -12,6 +12,52 @@
 
 	<link rel="stylesheet" type="text/css" href="../public/css/upload.css"></head>
 <body style="background-image: url('../public/images/background.jpg'")>
+<script type="text/javascript">
+
+// function checkFile(e) {
+
+//     /// get list of files
+//     var file = e.target.files;
+
+//     /// go through the list of files
+//     for (var i = 0, file; file = file_list[i]; i++) {
+
+//         var sFileName = file.name;
+//         var sFileExtension = sFileName.split('.')[sFileName.split('.').length - 1].toLowerCase();
+// 	    var iFileSize = file.size;
+// 	    var iConvert = (file.size / 1048576).toFixed(2);
+
+//         /// OR together the accepted extensions and NOT it. Then OR the size cond.
+//         /// It's easier to see this way, but just a suggestion - no requirement.
+//         if (!(sFileExtension === "pdf" ||
+//               sFileExtension === "doc" ||
+//               sFileExtension === "docx") || iFileSize > 10485760) { /// 10 mb
+//             txt = "File type : " + sFileExtension + "\n\n";
+//             txt += "Size: " + iConvert + " MB \n\n";
+//             txt += "Please make sure your file is in pdf or doc format and less than 10 MB.\n\n";
+//             alert(txt);
+//         }
+//     }
+// }
+// function checkDoctype() {
+// 	document.getElementById('fileInput').onchange = function () {
+//   		alert('Selected file: ' + this.value);
+//   		console.log('Selected file: ' + this.value);
+// 	};
+// }
+
+function checkfile(sender) {
+    var validExts = new Array(".docx", ".doc", ".pdf");
+    var fileExt = sender.value;
+    fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+    if (validExts.indexOf(fileExt) < 0) {
+      alert("Invalid file selected, valid files are of " +
+               validExts.toString() + " types.");
+      return false;
+    }
+    else return true;
+}
+</script>
 <br>
 <div class="container">
 	
@@ -119,7 +165,7 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<a href="/upload"><button type="submit" class="btn-block btn-lg btn-success" id="upload-btn">Upload</button></a>
+				<a href="/upload"><button type="submit" class="btn-block btn-lg btn-success" id="upload-btn" onclick="checkfile(this)">Upload</button></a>
 			</div>
 			<div class="col-md-4"></div>
 		</div>
@@ -129,6 +175,8 @@
 	</div>
 </div>
 <br>
+
+</script>
 <script type="text/javascript" src="../public/js/upload.js"></script>
 </body>
 </html>
