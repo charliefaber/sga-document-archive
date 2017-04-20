@@ -117,6 +117,7 @@ app.get('/download/:file(*)', function(req, res){
 //
 app.get('/upload', function(req, res) {
   res.render(path.join(__dirname, "../views/upload.handlebars"),{redirect: false});
+
 });
 
 // POST for upload form submission
@@ -315,8 +316,11 @@ app.post('/advancedSearch', function(req, res) {
       }
       var fail = false;
       if(items[0] == null) {
+
         fail = true;
         }
+
+      }
       // Render results handlebars template, passing variables containing search, button values, and sorted results
       res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail});
     });
