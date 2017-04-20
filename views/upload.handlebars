@@ -81,7 +81,26 @@ function checkDoctype() {
 <br>
 <hr>
 <br>
-
+	{{#if redirect}}
+	{{#if success}}
+	<center>
+		<img src="../public/images/success.jpg" alt="success" id="success">
+		<h1 style="color:green">File Successfully Uploaded</h1>
+		<span style="font-size: 1.5em"><span style="font-weight:bold">File Name: </span>{{upload.idText}}</span><br>
+		<span style="font-size: 1.5em"><span style="font-weight:bold">Document Type: </span>{{upload.doctypeSelect}}</span><br>
+		<span style="font-size: 1.5em"><span style="font-weight:bold">Document Amount: </span>${{upload.dollarText}}</span><br>
+		<span style="font-size: 1.5em"><span style="font-weight:bold">Date: </span>{{upload.dateSelect}}</span><br>
+		<span style="font-size: 1.5em"><span style="font-weight:bold">Tagline: </span>{{upload.tagText}}</span><br><hr><br>
+	</center>
+	{{else}}
+	<center>
+		<img src="../public/images/fail.jpg" alt="fail" id="fail">
+		<h1 style="color:red; font-weight:bold">File Not Uploaded:</h1>
+		<h3>Document with ID '<span style="font-weight:bold">{{upload.idText}}</span>' already exists in archive</h3>
+		</center>
+		<br><hr><br>
+	{{/if}}
+	{{/if}}
 	<div class="upload">
 		<form ref='uploadForm' 
       		  id='uploadForm' 
@@ -106,8 +125,8 @@ function checkDoctype() {
 
 					<label for="doctypeSelect">Document Type:</label>
 					<select id="doctypeSelect" name="doctypeSelect" class="input-lg form-control" onchange="changeTextBox();">
-					    <option value="bill" name="billSelect" selected>Bill</option>
-					    <option value="res" name="resSelect">Resolution</option>
+					    <option value="BILL" name="billSelect" selected>Bill</option>
+					    <option value="RESOLUTION" name="resSelect">Resolution</option>
 					</select>
 					<br>
 					<label for="dollarText">Dollar Amount:</label>

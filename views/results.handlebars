@@ -63,23 +63,56 @@
 	</div>
 	
 	<div class="containerdivNewLine"></div>
-<br>
+	<br>
 <hr>
-<br>
 
 	<div id="results">
+	{{#if fail}} 
+	
+	 		<div class="row no-gutter">
+		 		<div class="col-md-1"></div>
+		 		<div class="col-md-10">
+					<h2 style="font-weight:bold; margin-top:0px" >No results for query:</h2>
+					<span style="font-size:1.5em; font-style:italic">"{{search}}"</span>
+					
+
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+			<hr>
+		<br><br><br><br><br><br><br><br><br><br>
+	{{/if}}
+
+
+
+
 
 	 {{#if results}}
+	 		<div class="row no-gutter">
+		 		<div class="col-md-1"></div>
+		 		<div class="col-md-10">
+					<h2 style="font-weight:bold; margin-top:0px" >Showing results for query:</h2>
+					<span style="font-size:1.5em; font-style:italic">"{{search}}"</span>
+					</center>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+<hr>
 	 	{{#each results}}
-
+<br>
 	 		<div class="row no-gutter"> 
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
-					<h2>{{inc @index}}. {{this._id}}</h2>
-					<span style="font-size: 1.2em; font-style: italic;">Date: {{this.date}}</span><br>
+				
+					<h3 style="font-weight:bold">{{this._id}}</h3>
+
+					<span style="font-size: 1.2em; font-style: italic;">Date: {{this.date}}</span><br><br>
+					<h3 >A {{this.docType}}</h3>
+					<span style="font-size: 1.2em">{{this.tagline}}</span><br><br>
 
 
-					<span style="font-weight: bold">{{this.tagline}}</span><br><br>
+
+
 					<div class="panel-group">
 					  <div class="panel panel-default">
 					    <div class="panel-heading">
@@ -98,49 +131,24 @@
 
 				<div class="col-md-2"></div>
 			</div>
-			
-	 		<div class="row no-gutter">
-	 			<div class="col-md-2"></div>
-	 			<div class="col-md-8"><hr></div>
-	 			<div class="col-md-2"></div>
-	 		</div>
+
+				 		<div class="row no-gutter"> 
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+				<hr>
+				</div>
+				<div class="col-md-1"></div>
+</div>
 	 		
 	 	{{/each}}
 	 {{/if}}
 
 	</div>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
+
 </div>
 <br>
+
 </body>
 </html>
