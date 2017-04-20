@@ -1,12 +1,13 @@
 //load passport strategy
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var auth = require('auth.js');
+//var auth = require('./auth.js');
 //load user model
 module.exports = function(auth, passport){
 var passport = require('passport');
+var auth = require('./auth.js')
 passport.use('local-signin', new LocalStrategy(
-    //allows us to pass back the request to the callback
+     {passReqToCallback : true}, //allows us to pass back the request to the callback
      function(req, username, password, done) {
        auth.localAuth(username, password)
        .then(function (user) {

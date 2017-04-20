@@ -177,6 +177,9 @@ app.post('/upload', function(req, res) {
 //
 //LOGIN
 //
+
+
+
 app.get('/login', function(req, res) {
   res.render(path.join(__dirname, "../views/login.handlebars"));
 });
@@ -184,7 +187,7 @@ app.get('/login', function(req, res) {
 //process login
 app.post('/login', passport.authenticate('local-signin', {
   successRedirect: '/',
-  failureRedirect: '/login'
+  failureRedirect: '/login',
   }));
 
 app.get('/logout', function(req,res){
