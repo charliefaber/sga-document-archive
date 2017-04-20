@@ -59,7 +59,6 @@ app.post('/search', function(req, res) {
   MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);
 
-
     db.collection('documents').find(
       {$text: {$search: search}},
       {score: {$meta: "textScore"}}
@@ -117,15 +116,7 @@ app.get('/download/:file(*)', function(req, res){
 //UPLOAD
 //
 app.get('/upload', function(req, res) {
-  function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-           res.sendFile(path.join(__dirname, "../views/upload.html"))
-           }
-    req.session.error = 'Please sign in!';
-    res.redirect('/login');
-  };
   res.render(path.join(__dirname, "../views/upload.handlebars"),{redirect: false});
-
 });
 
 // POST for upload form submission
@@ -189,7 +180,7 @@ app.post('/upload', function(req, res) {
       "date": dateSelect,
       "tagline": tagText,
       "text": bodyText});
-   
+
     db.close();
   });
 
@@ -325,6 +316,7 @@ app.post('/advancedSearch', function(req, res) {
       var fail = false;
       if(items[0] == null) {
         fail = true;
+        }
       // Render results handlebars template, passing variables containing search, button values, and sorted results
       res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail});
     });
