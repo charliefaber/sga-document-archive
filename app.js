@@ -13,6 +13,7 @@ var methodOverride = require('method-override');
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 
 // MongoDB dependencies and variables
@@ -20,6 +21,7 @@ var mongo = require('mongodb');
 var assert = require('assert');
 var MongoClient = mongo.MongoClient;
 var configDb = require('./config/database.js');
+var auth = require('./config/auth.js');
 
 
 // Instantiate express variable
@@ -35,13 +37,11 @@ var hbs = exphbs.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
-mongoose.connect(configDb.url);
-require('./config/passport.js')(passport);
 
 app.use(logger('combined'));
 app.use(cookieParser());
@@ -75,7 +75,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 //routers
-require('./config/passport.js')(passport);
+require('./config/passport.js')(app, auth);
 require('./app/routes.js')(app, passport);
 
 

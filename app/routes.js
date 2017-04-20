@@ -8,6 +8,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var textract = require('textract');
+var auth = require('../config/auth.js');
 
 
 module.exports = function(app, passport){
@@ -16,6 +17,7 @@ module.exports = function(app, passport){
 //HOME PAGE
 //
 app.get('/', function(req, res) {
+
 
     MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);
@@ -110,7 +112,13 @@ app.get('/download/:file(*)', function(req, res){
 //UPLOAD
 //
 app.get('/upload', function(req, res) {
-  res.sendFile(path.join(__dirname, "../views/upload.html"));
+  function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+           res.sendFile(path.join(__dirname, "../views/upload.html"))
+           }
+    req.session.error = 'Please sign in!';
+    res.redirect('/login');
+  };
 });
 
 // POST for upload form submission
@@ -170,16 +178,22 @@ app.post('/upload', function(req, res) {
 //LOGIN
 //
 app.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, "../views/login.html"));
+  res.render(path.join(__dirname, "../views/login.handlebars"));
 });
 
 //process login
-app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/',
-    failureRedirect : '/login',
-    failureFlash : true
-    })
-);
+app.post('/login', passport.authenticate('local-signin', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+  }));
+
+app.get('/logout', function(req,res){
+    var name = req.user.username;
+    console.log("LOGGING OUT " + name)
+    req.logout();
+    res.redirect('/');
+    req.session.notice = name + " has successfully logged out.";
+});
 
 //
 //ADVANCED SEARCH PAGE
