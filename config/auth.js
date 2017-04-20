@@ -3,16 +3,16 @@ var bcrypt = require('bcryptjs'),
     configDb = require('./database.js');
 
   var MongoClient = require('mongodb').MongoClient;
-  exports.localAuth = function (req, username, password, done) {
+  exports.localAuth = function (username, password, done) {
   var deferred = Q.defer();
-
+    console.log(username + " " + password);
   MongoClient.connect(configDb.url, function (err, db) {
     var collection = db.collection('users');
     collection.find({'name' : username}).toArray(function(err, items) {
         var result=items[0];
         if (result==null) {
           console.log("USERNAME NOT FOUND:", username);
-            console.log(password);
+            console.log(username + " " + password);
           deferred.resolve(false);
         }
         else {

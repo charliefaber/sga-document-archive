@@ -26,22 +26,45 @@ var auth = require('./config/auth.js');
 
 // Instantiate express variable
 var app = express();
-var hbs = exphbs.create({
-  helpers: {
-    defaultLayout: 'main',
-    inc: function(num) {return num+1;},
-    inc: function(num) {return num+1;},
-    if1: function(num) {return num == 1;}
+passport.use('local-signup', new LocalStrategy(
+  {passReqToCallback : true}, //allows us to pass back the request to the callback
+  function(req, username, password, done) {
+    funct.localReg(username, password)
+    .then(function (user) {
+      if (user) {
+        console.log("REGISTERED: " + user.username);
+        req.session.success = 'You are successfully registered and logged in ' + user.username + '!';
+        done(null, user);
+      }
+      if (!user) {
+        console.log("COULD NOT REGISTER");
+        req.session.error = 'That username is already in use, please try a different one.'; //inform user could not log them in
+        done(null, user);
+      }
+    })
+    .fail(function (err){
+      console.log(err.body);
+    });
   }
-});
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+));
+
+// Simple route middleware to ensure user is authenticated.
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  req.session.error = 'Please sign in!';
+  res.redirect('/login');
+}
+
 
 
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+
+
+
 
 app.use(logger('combined'));
 app.use(cookieParser());
@@ -68,14 +91,27 @@ app.use(function(req, res, next){
 
   next();
 });
+
+
+
 app.use(fileUpload());
 app.use(express.static(__dirname));
+
+
+var hbs = exphbs.create({
+  helpers: {
+    defaultLayout: 'main',
+    inc: function(num) {return num+1;},
+    inc: function(num) {return num+1;},
+    if1: function(num) {return num == 1;}
+  }
+});
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 //routers
-require('./config/passport.js')(app, auth);
+//require('./config/passport.js');
 require('./app/routes.js')(app, passport);
 
 

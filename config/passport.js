@@ -1,14 +1,14 @@
 //load passport strategy
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-//var auth = require('./auth.js');
+var auth = require('./auth.js');
 //load user model
 module.exports = function(auth, passport){
-var passport = require('passport');
-var auth = require('./auth.js')
-passport.use('local-signin', new LocalStrategy(
+
+passport.use('local', new LocalStrategy({
+      usernameField : 'name'},
      {passReqToCallback : true}, //allows us to pass back the request to the callback
-     function(req, username, password, done) {
+     function(username, password, done) {
        auth.localAuth(username, password)
        .then(function (user) {
          if (user) {
@@ -31,10 +31,10 @@ passport.use('local-signin', new LocalStrategy(
 passport.serializeUser(function(users, done) {
   console.log("serializing " + users.name);
   done(null, users);
-});
+}),
 
 passport.deserializeUser(function(obj, done) {
   console.log("deserializing " + obj);
   done(null, obj);
-});
+})
 };

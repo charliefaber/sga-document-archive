@@ -11,6 +11,7 @@ var textract = require('textract');
 var auth = require('../config/auth.js');
 
 
+
 module.exports = function(app, passport){
 
 //
@@ -185,9 +186,10 @@ app.get('/login', function(req, res) {
 });
 
 //process login
-app.post('/login', passport.authenticate('local-signin', {
+app.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
+  failureFlash : true
   }));
 
 app.get('/logout', function(req,res){
