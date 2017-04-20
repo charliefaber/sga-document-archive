@@ -92,7 +92,11 @@ app.post('/search', function(req, res) {
       else {
         console.log("1")
       }
-      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items });
+      var fail = false;
+      if(items[0] == null) {
+        fail = true;
+      }
+      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail });
 
     });
     //console.log(JSON.stringify(results));
@@ -120,6 +124,8 @@ app.get('/upload', function(req, res) {
     req.session.error = 'Please sign in!';
     res.redirect('/login');
   };
+  res.render(path.join(__dirname, "../views/upload.handlebars"),{redirect: false});
+
 });
 
 // POST for upload form submission
@@ -134,11 +140,11 @@ app.post('/upload', function(req, res) {
   var filePath = path.join(__dirname,`../uploads/${idText}.docx`);
 
 
-  doctypeSelect = req.body.doctypeSelect,
-  dollarText = req.body.dollarText,
-  dateSelect = req.body.dateSelect,
-  tagText = req.body.tagText,
-  bodyText = "";
+  var doctypeSelect = req.body.doctypeSelect;
+  var dollarText = req.body.dollarText;
+  var dateSelect = req.body.dateSelect;
+  var tagText = req.body.tagText;
+  var bodyText = "";
   // Use the mv() method to place the file somewhere on your server
   myFile.mv(filePath, function(err) {
     if (err)
@@ -146,23 +152,35 @@ app.post('/upload', function(req, res) {
 
     textract.fromFileWithPath(filePath, function( error, text ) {
       bodyText = text;
-      var p = path.join(__dirname, "../views/index.handlebars");
-      res.redirect(p);
+
+      //var p = path.join(__dirname, "../views/index.handlebars");
+      //res.redirect(p);
     });
-    console.log(idText);
-    console.log(doctypeSelect);
-    console.log(dollarText);
-    console.log(dateSelect);
-    console.log(tagText);
-    console.log(bodyText);
-    console.log("");
-    console.log(req.body);
-    console.log(req.files);
+    // console.log(idText);
+    // console.log(doctypeSelect);
+    // console.log(dollarText);
+    // console.log(dateSelect);
+    // console.log(tagText);
+    //console.log(bodyText);
+    // console.log("");
+    // console.log(req.body);
+    // console.log(req.files);
   });
 
+  var upload = {idText: idText, doctypeSelect: doctypeSelect, dollarText: dollarText, dateSelect: dateSelect, tagText:tagText, bodyText:bodyText};
   MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);
-
+      db.collection('documents').find({_id: idText}).toArray(function(err, item) {
+        if(item[0] == null){
+          db.collection('documents').find().sort({ date: -1}).limit(5).toArray(function(err, items) {
+            res.render(path.join(__dirname, '../views/upload.handlebars'), { redirect: true, upload: upload, success: true });
+          });
+        } else {
+          db.collection('documents').find().sort({ date: -1}).limit(5).toArray(function(err, items) {
+            res.render(path.join(__dirname, '../views/upload.handlebars'), {redirect: true, upload: upload, success: false });
+          });
+        }
+     });
     db.collection('documents').insertOne( {
       "_id": idText,
       "path": filePath,
@@ -171,8 +189,10 @@ app.post('/upload', function(req, res) {
       "date": dateSelect,
       "tagline": tagText,
       "text": bodyText});
+   
     db.close();
   });
+
 });
 
 //
@@ -257,7 +277,7 @@ app.post('/advancedSearch', function(req, res) {
   var buttonVals = {filter: filter, relevancy: relevancy, recency: recency, highest: highest, lowest: lowest};
 
 // Connect to Mongo database
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);        // Check for errors
 
     // Query documents collection
@@ -302,9 +322,11 @@ app.post('/advancedSearch', function(req, res) {
           return a.amount - b.amount;
         });
       }
-
+      var fail = false;
+      if(items[0] == null) {
+        fail = true;
       // Render results handlebars template, passing variables containing search, button values, and sorted results
-      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items});
+      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail});
     });
     db.close();
   });

@@ -1,6 +1,6 @@
 function changeTextBox() {
   let dollarText = document.getElementById("dollarText");
-  if(document.getElementById("doctypeSelect").value === "res") {
+  if(document.getElementById("doctypeSelect").value === "RESOLUTION") {
     dollarText.value = "N/A";
     dollarText.disabled=true;
   } else {
