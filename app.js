@@ -71,9 +71,6 @@ var bodyParser = require('body-parser');
 // mongoose.connect(configDb.url);
 //require('./config/passport.js')(passport);
 
-
-
-
 //app.use(logger('combined'));
 app.use(cookieParser());
 
@@ -91,6 +88,23 @@ var authAdmin = function(req, res, next) {
   else
     res.sendFile(path.join(__dirname + '/views/login.html'))
 };
+
+
+var bcrypt = require('bcrypt');
+// Generate a salt
+var salt = bcrypt.genSaltSync(10);
+// Hash the password with the salt
+var hash = bcrypt.hashSync("ChampionOfRrr", salt);
+
+
+/*
+
+
+STORE NEW ADMIN ACCOUNT CODE HERE
+
+
+*/
+
 //app.use(passport.initialize());
 //app.use(passport.session());
 //app.use(flash());
