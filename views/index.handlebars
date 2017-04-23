@@ -13,9 +13,12 @@
 </head>
 <br>
 <body style="background-image: url('../public/images/background.jpg'")>
-<div class="container">
-	<br>
+
+<div class="container"><br>
+
 	<div class="header">
+
+
 		<div class="row no-gutter">
 			<div class="col-md-10"></div>
 			<div class="col-md-1">
@@ -85,11 +88,11 @@
 	<br>
 <br>
 	<hr>
-	<br>
+	
 	<h2><center>Recent Uploads: </center></h2>
 
 	
-	<br>
+	<hr><br>
 
 
 	<div class="recent">
@@ -99,11 +102,14 @@
 	 		<div class="row no-gutter"> 
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
-					<h2>{{inc @index}}. {{this._id}}</h2>
-					<span style="font-size: 1.2em; font-style: italic;">Date: {{this.date}}</span><br>
+					<h3 style="font-weight:bold">{{this._id}}</h3>
+					<span style="font-size: 1.2em; font-style: italic;">Date: {{this.date}}</span><br><br>
+					<h3 >A {{this.docType}}</h3>
+					<span style="font-size: 1.2em">{{this.tagline}}</span><br><br>
 
 
-					<span style="font-weight: bold">{{this.tagline}}</span><br><br>
+
+
 					<div class="panel-group">
 					  <div class="panel panel-default">
 					    <div class="panel-heading">
@@ -116,26 +122,39 @@
 					    </div>
 					  </div>
 					</div>
+
 					<a href="/download/{{this._id}}"><span style="display: inline; float: right">Download Original File</span></a>
-					<br><hr>
 				</div>
+
 				<div class="col-md-2"></div>
 			</div>
+
+
+				 		<div class="row no-gutter"> 
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+				<hr>
+				</div>
+				<div class="col-md-1"></div>
+</div>
 	 		
 	 	{{/each}}
 	 {{/if}}
 	</div>
 
 
-	<div class="footer">
-	</div>
+
 <br>
-	<br>
-	<br>
-	<br>
+
+	<div style="margin-bottom:10px; font-weight: bold" class="footer">
+
+			<a style="display: inline; float: left;" href="/help">Help</a>
+		<a style="display: inline; float: right;" href="/contact">Contact Us</a><br>
+	</div>
 </div>
 
 
 <br>
+
 </body>
 </html>

@@ -27,7 +27,32 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/logout', function(req, res) {
+  req.session.destroy();
 
+});
+
+app.post('/checkLogin', function(req, res) {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  MongoClient.connect(configDb.url, function(err, db) {
+    db.collection('users').find({name: username}).toArray(function(err, items) {
+      console.log(JSON.stringify(items));
+      if(items[0].password == password) {
+        console.log("login successful");
+        req.session.admin = true;
+        req.session.user = username;
+        res.redirect('/');
+      }
+      else {
+        res.redirect('/login');
+          console.log("login failed");
+      }
+    });
+
+  });
+});
 
 // Simple search form query
 app.post('/search', function(req, res) {
@@ -112,9 +137,7 @@ app.get('/download/:file(*)', function(req, res){
 //
 //UPLOAD
 //
-app.get('/upload', function(req, res) {
-  res.render(path.join(__dirname, "../views/upload.handlebars"),{redirect: false});
-});
+
 
 // POST for upload form submission
 app.post('/upload', function(req, res) {
@@ -190,13 +213,7 @@ app.get('/login', function(req, res) {
   res.sendFile(path.join(__dirname, "../views/login.html"));
 });
 
-//process login
-app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/',
-    failureRedirect : '/login',
-    failureFlash : true
-    })
-);
+
 
 //
 //ADVANCED SEARCH PAGE
@@ -205,6 +222,10 @@ app.get('/advanced', function(req, res) {
   res.sendFile(path.join(__dirname, "/../views/advanced.html"));
 });
 
+app.get('/help', function(req, res) {
+   res.sendFile(path.join(__dirname, "/../views/help.html"));
+
+});
 //
 //ADVANCED SEARCH CODE
 //
@@ -232,7 +253,7 @@ app.post('/advancedSearch', function(req, res) {
   // If value of Checkbox is 'on', box is checked, therefore store "checked" in respective variable
   if(req.body.billCheck == 'on') {billCheck = "checked";}
   if(req.body.resCheck == 'on') {resCheck = "checked";}
-
+  console.log(billCheck + " " + resCheck);
   // Year Range
   var yearMin = req.body.yearMin;
   var yearMax = req.body.yearMax;
@@ -241,7 +262,7 @@ app.post('/advancedSearch', function(req, res) {
     yearMin = 0;
   if(yearMax == null || yearMax == undefined || yearMax == "")
     yearMax = 3000;
-
+  console.log(yearMin + " " + yearMax);
   // Amount Range
   var amtMin = req.body.amtMin;
   var amtMax = req.body.amtMax;
@@ -250,6 +271,8 @@ app.post('/advancedSearch', function(req, res) {
     amtMin = 0;
   if(amtMax == null || amtMax == undefined || amtMax == "")
     amtMax = 100000;
+
+  console.log(amtMin + " " + amtMax);
 
   // Store values of buttons in JavaScript object
   var buttonVals = {filter: filter, relevancy: relevancy, recency: recency, highest: highest, lowest: lowest};
@@ -263,7 +286,7 @@ app.post('/advancedSearch', function(req, res) {
       {$text: {$search: search}},             // User's text passed in search variable
       {score: {$meta: "textScore"}}           // Sort documents by score of match
     ).sort({ score: {$meta: "textScore"}}).toArray(function(err, items) { // Convert to array
-
+      console.log(JSON.stringify(items));
       // Filter the array based on the advanced form fields
       items = items.filter(function(item) {
         // Get year of current document being filtered
@@ -274,13 +297,14 @@ app.post('/advancedSearch', function(req, res) {
           return(year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax)
         // Else if only bill is checked
         else if(billCheck == "checked")
-          return(item.docType == "bill" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
+          return(item.docType == "BILL" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
         // Else if only resolution is checked
         else if(resCheck == "checked") {
-          return(item.docType == "res" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
+          return(item.docType == "RESOLUTION" && year >= yearMin && year <= yearMax && item.amount >= amtMin && item.amount <= amtMax);
         }
       });
 
+      console.log(JSON.stringify(items));
       // Use value of filter to determine how to sort results
       if(filter == "recency") {
         // Sort based on recency of date

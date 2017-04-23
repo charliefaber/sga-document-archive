@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SGA Document Archive - Login</title>
-	
+	<title>SGA Document Archive - Contact Us</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="../public/css/login.css">
+	<link rel="stylesheet" type="text/css" href="../public/css/results.css">
 </head>
-
 <body style="background-image: url('../public/images/background.jpg'")>
-<br>
 <div class="container">
 	<br>
 		<div class="menu">
@@ -38,16 +35,16 @@
 			  id="searchForm"
 			  action="http://localhost:3000/search"
 			  method="post"
-			  enctype="form-data">
+			  enctype="multipart/form-data">
 			<fieldset>
 
 			<input type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
 
 			<select id="filterSelect" name="filterSelect" class="input-md form-control">
-				<option value="relevancy" selected>Most Relevant</option>
-				<option value="recency">Most Recent</option>
-				<option value="highest">Highest Dollar Amount</option>
-				<option value="lowest">Lowest Dollar Amount</option>
+				<option value="relevancy" {{#if buttonVals.relevancy}}selected{{/if}}>Most Relevant</option>
+				<option value="recency" {{#if buttonVals.recency}}selected{{/if}}>Most Recent</option>
+				<option value="highest" {{#if buttonVals.highest}}selected{{/if}}>Highest Dollar Amount</option>
+				<option value="lowest" {{#if buttonVals.lowest}}selected{{/if}}>Lowest Dollar Amount</option>
 			</select>
 			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button><br><br>
 			<a href="/advanced">Advanced Search</a>
@@ -55,53 +52,23 @@
 			</fieldset>
 			</form>
 		</div>
-		
-
 	</div>
 	
 	<div class="containerdivNewLine"></div>
-<br>
+	<br>
 <hr>
 
 
-	
-	<div class="login">
-		<div class="row no-gutter">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-					<h2 style="font-weight: bold;text-align: center">User Login</h2> 
-					<img src="../public/images/key.png" id="key" name="key" alt="login">
-			</div>
-			<div class="col-md-4"></div>
 
-		</div>
-	    <div class="row no-gutter">
-	    	<div class="col-md-4"></div>
-	        <div class="col-md-4">
-	        	<br>
-				<form action="/checkLogin" method="post">
-					<h4 style="font-style: italic; text-align: center">Welcome Back!</h4><br>
-					<label for="userName">Username:</label>
-					<input type="text" name = "username" id="userName" class="form-control input-lg chat-input" placeholder="username" />
-					<br>
-					<label for="userPassword">Password:</label>
-					<input type="text" name = "password" id="userPassword" class="form-control input-lg chat-input" placeholder="password" />
-					<br>
+	<div style="margin-bottom:10px; font-weight: bold" class="footer">
 
-					<input type="submit" value="Log In" class="btn btn-success btn-block btn-lg"/>
-					<br>
-				</form>
-	            <br>
-	        </div>   
-	        <div class="col-md-4"></div>
-	    </div>
-	    <br>
-	    <br><br><br><br>
-	    <br>
-	    <br>
-	    
-    </div>
+			<a style="display: inline; float: left;" href="/help">Help</a>
+		<a style="display: inline; float: right;" href="/contact">Contact Us</a><br>
+	</div>
 </div>
+
+
+
+
 </body>
-<br>
 </html>
