@@ -93,10 +93,16 @@ var authAdmin = function(req, res, next) {
 var bcrypt = require('bcrypt');
 // Generate a salt
 var salt = bcrypt.genSaltSync(10);
-// Hash the password with the salt
-var hash = bcrypt.hashSync("ChampionOfRrr", salt);
 
+// // Hash the password with the salt
+// var hash = bcrypt.hashSync("ChampionOfRrr", salt);
 
+// MongoClient.connect(configDb.url, function(err, db) {
+//   assert.equal(null, err) 
+  
+//   db.collection('users').insert({name: "admin", password: hash});
+
+// });
 /*
 
 
