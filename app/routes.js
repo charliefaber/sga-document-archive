@@ -47,13 +47,14 @@ app.post('/checkLogin', function(req, res) {
         res.redirect('/login');
           console.log("login failed");
       } 
-      else if(bcrypt.compareSync(password, items[0].password) {
+      else if(bcrypt.compareSync(password, items[0].password)) {
         console.log("login successful");
         req.session.admin = true;
         req.session.user = username;
         res.redirect('/upload');
       
-    }
+      }
+    
     });
 
   });
