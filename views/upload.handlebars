@@ -115,27 +115,27 @@ function checkDoctype() {
 					<img src="../public/images/newDoc.png" alt="newDoc" id="newDoc">
 					<br>
 
-        			<input type="file" name="myFile" id="myFile" onchange="checkDoctype();" />
+        			<input type="file" name="myFile" id="myFile" onchange="checkDoctype();"  required/>
         		</div>
 			
 				<div class="col-md-4">
 					<label for="docID">Document ID:</label>
-					<input type="text" placeholder="SB1617.01" name="idText" id="idText" class="btn-block input-lg">
+					<input type="text" placeholder="SB1617.01" name="idText" id="idText" class="btn-block input-lg" required>
 					<br>
 
 					<label for="doctypeSelect">Document Type:</label>
-					<select id="doctypeSelect" name="doctypeSelect" class="input-lg form-control" onchange="changeTextBox();">
+					<select id="doctypeSelect" name="doctypeSelect" class="input-lg form-control" onchange="changeTextBox();"  required>
 					    <option value="BILL" name="billSelect" selected>Bill</option>
 					    <option value="RESOLUTION" name="resSelect">Resolution</option>
 					</select>
 					<br>
 					<label for="dollarText">Dollar Amount:</label>
-					<input type="text" placeholder="0.00" name="dollarText" id="dollarText" class="btn-block input-lg">
+					<input type="text" placeholder="0.00" name="dollarText" id="dollarText" class="btn-block input-lg"  required>
 					
 					<br>
 
 					<label for="dateSelect">Date:</label>
-					<input type="date" class="btn-block input-lg" name="dateSelect" id="dateSelect">
+					<input type="date" class="btn-block input-lg" name="dateSelect" id="dateSelect"  required>
 				</div>
 				<div class="col-md-2"></div>
 			</div>
@@ -147,7 +147,7 @@ function checkDoctype() {
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<label for="tagline">Tagline</label>
-				<textarea class="form-control input-block input-lg" rows="3" id="tagText" name="tagText" placeholder="Ex: To allocate $2,000 to GC Miracle to fund stage costs for Dance Marathon 2017"></textarea>
+				<textarea class="form-control input-block input-lg" rows="3" id="tagText" name="tagText" placeholder="Ex: To allocate $2,000 to GC Miracle to fund stage costs for Dance Marathon 2017"  required></textarea>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
