@@ -14,12 +14,12 @@ var methodOverride = require('method-override');
 var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
-<<<<<<< HEAD
-//var flash = require('connect-flash');
-=======
-var LocalStrategy = require('passport-local').Strategy;
-var flash = require('connect-flash');
->>>>>>> d4328a540bda6202412898395c0c95bd2721956f
+// <<<<<<< HEAD
+// //var flash = require('connect-flash');
+// =======
+// var LocalStrategy = require('passport-local').Strategy;
+// var flash = require('connect-flash');
+// >>>>>>> d4328a540bda6202412898395c0c95bd2721956f
 
 // MongoDB dependencies and variables
 var mongo = require('mongodb');
@@ -31,35 +31,35 @@ var auth = require('./config/auth.js');
 var session = require('express-session');
 // Instantiate express variable
 var app = express();
-passport.use('local-signup', new LocalStrategy(
-  {passReqToCallback : true}, //allows us to pass back the request to the callback
-  function(req, username, password, done) {
-    funct.localReg(username, password)
-    .then(function (user) {
-      if (user) {
-        console.log("REGISTERED: " + user.username);
-        req.session.success = 'You are successfully registered and logged in ' + user.username + '!';
-        done(null, user);
-      }
-      if (!user) {
-        console.log("COULD NOT REGISTER");
-        req.session.error = 'That username is already in use, please try a different one.'; //inform user could not log them in
-        done(null, user);
-      }
-    })
-    .fail(function (err){
-      console.log(err.body);
-    });
-  }
-));
+// passport.use('local-signup', new LocalStrategy(
+//   {passReqToCallback : true}, //allows us to pass back the request to the callback
+//   function(req, username, password, done) {
+//     funct.localReg(username, password)
+//     .then(function (user) {
+//       if (user) {
+//         console.log("REGISTERED: " + user.username);
+//         req.session.success = 'You are successfully registered and logged in ' + user.username + '!';
+//         done(null, user);
+//       }
+//       if (!user) {
+//         console.log("COULD NOT REGISTER");
+//         req.session.error = 'That username is already in use, please try a different one.'; //inform user could not log them in
+//         done(null, user);
+//       }
+//     })
+//     .fail(function (err){
+//       console.log(err.body);
+//     });
+//   }
+// ));
 
 // Simple route middleware to ensure user is authenticated.
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  req.session.error = 'Please sign in!';
-  res.redirect('/login');
-}
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) { return next(); }
+//   req.session.error = 'Please sign in!';
+//   res.redirect('/login');
+// }
 
 
 
@@ -68,13 +68,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //var session = require('express-session');
 
-<<<<<<< HEAD
-mongoose.connect(configDb.url);
+// mongoose.connect(configDb.url);
 //require('./config/passport.js')(passport);
-=======
 
 
->>>>>>> d4328a540bda6202412898395c0c95bd2721956f
+
 
 //app.use(logger('combined'));
 app.use(cookieParser());
@@ -84,7 +82,6 @@ app.use(bodyParser.json());
 
 app.use(session({ secret: 'keyboard cat',
                   resave: true,
-<<<<<<< HEAD
                   saveUninitialized: true,
                 }));
 
@@ -112,30 +109,29 @@ var authAdmin = function(req, res, next) {
 
 //   next();
 // });
-=======
-                  saveUninitialized: true}));
+
+                  // saveUninitialized: true}));
 app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
-app.use(function(req, res, next){
-  var err = req.session.error,
-      msg = req.session.notice,
-      success = req.session.success;
+// app.use(passport.session());
+// app.use(flash());
+// app.use(function(req, res, next){
+//   var err = req.session.error,
+//       msg = req.session.notice,
+//       success = req.session.success;
 
-  delete req.session.error;
-  delete req.session.success;
-  delete req.session.notice;
+//   delete req.session.error;
+//   delete req.session.success;
+//   delete req.session.notice;
 
-  if (err) res.locals.error = err;
-  if (msg) res.locals.notice = msg;
-  if (success) res.locals.success = success;
+//   if (err) res.locals.error = err;
+//   if (msg) res.locals.notice = msg;
+//   if (success) res.locals.success = success;
 
-  next();
-});
+//   next();
+// });
 
 
 
->>>>>>> d4328a540bda6202412898395c0c95bd2721956f
 app.use(fileUpload());
 app.use(express.static(__dirname));
 
@@ -144,11 +140,8 @@ var hbs = exphbs.create({
   helpers: {
     defaultLayout: 'main',
     inc: function(num) {return num+1;},
-    inc: function(num) {return num+1;},
-    if1: function(num) {return num == 1;}
   }
 });
-
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 

@@ -41,17 +41,17 @@ app.post('/checkLogin', function(req, res) {
 
   MongoClient.connect(configDb.url, function(err, db) {
     db.collection('users').find({name: username}).toArray(function(err, items) {
-      console.log(JSON.stringify(items));
-      if(items[0].password == password) {
+      if(items[0] == undefined) {
+        res.redirect('/login');
+          console.log("login failed");
+      } 
+      else if(items[0].password == password) {
         console.log("login successful");
         req.session.admin = true;
         req.session.user = username;
         res.redirect('/');
-      }
-      else {
-        res.redirect('/login');
-          console.log("login failed");
-      }
+      
+    }
     });
 
   });
@@ -140,14 +140,11 @@ app.get('/download/:file(*)', function(req, res){
 //
 //UPLOAD
 //
-<<<<<<< HEAD
 
-=======
-app.get('/upload', function(req, res) {
-  res.render(path.join(__dirname, "../views/upload.handlebars"),{redirect: false});
+// app.get('/upload', function(req, res) {
+//   res.render(path.join(__dirname, "../views/upload.handlebars"),{redirect: false});
 
-});
->>>>>>> d4328a540bda6202412898395c0c95bd2721956f
+// });
 
 // POST for upload form submission
 app.post('/upload', function(req, res) {
@@ -223,27 +220,18 @@ app.post('/upload', function(req, res) {
 
 
 app.get('/login', function(req, res) {
-  res.render(path.join(__dirname, "../views/login.handlebars"));
+  res.sendFile(path.join(__dirname, "../views/login.html"));
 });
 
-<<<<<<< HEAD
 
-=======
-//process login
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash : true
-  }));
-
-app.get('/logout', function(req,res){
-    var name = req.user.username;
-    console.log("LOGGING OUT " + name)
-    req.logout();
-    res.redirect('/');
-    req.session.notice = name + " has successfully logged out.";
-});
->>>>>>> d4328a540bda6202412898395c0c95bd2721956f
+// app.get('/logout', function(req,res){
+//     var name = req.user.username;
+//     console.log("LOGGING OUT " + name)
+//     req.logout();
+//     res.redirect('/');
+//     req.session.notice = name + " has successfully logged out.";
+// });
+// >>>>>>> d4328a540bda6202412898395c0c95bd2721956f
 
 //
 //ADVANCED SEARCH PAGE
@@ -358,7 +346,7 @@ app.post('/advancedSearch', function(req, res) {
       if(items[0] == null) {
 
         fail = true;
-        }
+        
 
       }
       // Render results handlebars template, passing variables containing search, button values, and sorted results

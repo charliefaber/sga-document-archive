@@ -14,10 +14,7 @@
 <br>
 <body style="background-image: url('../public/images/background.jpg'")>
 
-<<<<<<< HEAD
-<div class="container"><br>
 
-=======
 <div class="container">
     <br>
     <nav class="navbar navbar-default" role="navigation">
@@ -40,7 +37,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
             <li>
-                {{#if user}}
+{{!--                 {{#if user}}
                     <p class="navbar-text">
                         <strong>Hi,</strong>
                         <img src="{{user.avatar}}" width="20" height="20">
@@ -53,12 +50,13 @@
                         <a href="/logout">Log Out</a>
                     </li>
                     <li>
+
+                {{else}} --}}
                     <a href="/upload"><button style="margin-right: 20px" type="button" class="btn btn-default btn-md btn-block">Upload</button></a>
-                {{else}}
                     <a href="/login"><button style="margin-right: 20px" type="button" class="btn btn-primary btn-md btn-block">Sign In</button></a>
                     </li>
-                {{/if}}
-            </ul>
+{{!--                 {{/if}}
+ --}}            </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
             </div>
@@ -80,7 +78,6 @@
     {{{body}}}
 	<br>
     <!--
->>>>>>> d4328a540bda6202412898395c0c95bd2721956f
 	<div class="header">
 
 
@@ -217,10 +214,9 @@
 			<a style="display: inline; float: left;" href="/help">Help</a>
 		<a style="display: inline; float: right;" href="/contact">Contact Us</a><br>
 	</div>
-</div>
 
 
-<br>
+
 
 </body>
 </html>
