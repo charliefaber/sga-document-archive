@@ -120,12 +120,38 @@ app.post('/search', function(req, res) {
       if(items[0] == null) {
         fail = true;
       }
-      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail });
 
+      session = req.session.admin;
+
+      if(session == true) 
+        res.render(path.join(__dirname, '../views/resultsAdmin.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail});
+      else {
+      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail});
+    }
     });
     //console.log(JSON.stringify(results));
     db.close();
   });
+
+});
+
+app.get('/delete/:doc',function(req,res) {
+  var search = req.params.search;
+  var doc = req.params.doc;
+  console.log("delete clicked!");
+
+  MongoClient.connect(configDb.url, function(err, db) {
+    assert.equal(null, err);
+    console.log(doc);
+    db.collection('documents').find({_id: doc}).toArray(function(err, items) {
+      db.collection('deleted').insert(items[0]);
+
+    });
+    db.collection('documents').remove({_id: doc});
+    console.log('deleted!');
+    res.redirect('/');
+  });
+
 
 });
 
