@@ -8,6 +8,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var textract = require('textract');
+var auth = require('../config/auth.js');
+
 
 
 module.exports = function(app, passport){
@@ -16,6 +18,7 @@ module.exports = function(app, passport){
 //HOME PAGE
 //
 app.get('/', function(req, res) {
+
 
     MongoClient.connect(configDb.url, function(err, db) {
     assert.equal(null, err);
@@ -137,7 +140,14 @@ app.get('/download/:file(*)', function(req, res){
 //
 //UPLOAD
 //
+<<<<<<< HEAD
 
+=======
+app.get('/upload', function(req, res) {
+  res.render(path.join(__dirname, "../views/upload.handlebars"),{redirect: false});
+
+});
+>>>>>>> d4328a540bda6202412898395c0c95bd2721956f
 
 // POST for upload form submission
 app.post('/upload', function(req, res) {
@@ -200,7 +210,7 @@ app.post('/upload', function(req, res) {
       "date": dateSelect,
       "tagline": tagText,
       "text": bodyText});
-   
+
     db.close();
   });
 
@@ -209,11 +219,31 @@ app.post('/upload', function(req, res) {
 //
 //LOGIN
 //
+
+
+
 app.get('/login', function(req, res) {
-  res.sendFile(path.join(__dirname, "../views/login.html"));
+  res.render(path.join(__dirname, "../views/login.handlebars"));
 });
 
+<<<<<<< HEAD
 
+=======
+//process login
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash : true
+  }));
+
+app.get('/logout', function(req,res){
+    var name = req.user.username;
+    console.log("LOGGING OUT " + name)
+    req.logout();
+    res.redirect('/');
+    req.session.notice = name + " has successfully logged out.";
+});
+>>>>>>> d4328a540bda6202412898395c0c95bd2721956f
 
 //
 //ADVANCED SEARCH PAGE
@@ -326,7 +356,10 @@ app.post('/advancedSearch', function(req, res) {
       }
       var fail = false;
       if(items[0] == null) {
+
         fail = true;
+        }
+
       }
       // Render results handlebars template, passing variables containing search, button values, and sorted results
       res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail});
