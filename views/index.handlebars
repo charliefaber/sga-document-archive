@@ -17,85 +17,12 @@
 
 <div class="container">
     <br>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-md-10"></div>
-                <div class="col-md-1">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-            <li>
-{{!--                 {{#if user}}
-                    <p class="navbar-text">
-                        <strong>Hi,</strong>
-                        <img src="{{user.avatar}}" width="20" height="20">
-                        {{user.username}}
-                    </p>
-                </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/logout">Log Out</a>
-                    </li>
-                    <li>
-
-                {{else}} --}}
-                    <a href="/upload"><button style="margin-right: 20px" type="button" class="btn btn-default btn-md btn-block">Upload</button></a>
-                    <a href="/login"><button style="margin-right: 20px" type="button" class="btn btn-primary btn-md btn-block">Sign In</button></a>
-                    </li>
-{{!--                 {{/if}}
- --}}            </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-            </div>
-        </div>
-    </nav>
-    {{#if error}}
-        <p class="alert alert-warning">{{error}}</p>
-    {{/if}}
-
-    {{#if success}}
-        <p class="alert alert-success">{{success}}</p>
-    {{/if}}
-
-    {{#if notice}}
-        <p class="alert alert-info">{{notice}}</p>
-    {{/if}}
-
-    <!--where our other templates will insert-->
-    {{{body}}}
-	<br>
-    <!--
+    
 	<div class="header">
-
-
-		<div class="row no-gutter">
-			<div class="col-md-10"></div>
-			<div class="col-md-1">
-				<a href="/upload"><button style="margin-right: 20px" type="button" class="btn btn-default btn-md btn-block">Upload</button></a>
-			</div>
-
-			<div class="col-md-1">
-				<a href="/login"><button style="margin-right: 20px" type="button" class="btn btn-primary btn-md btn-block">Sign In</button></a>
-			</div>
-
-		</div>
-
+		<a href="/upload"><button style="margin-right: 10px; display:inline; float: right" type="button" class="btn btn-default btn-md">Upload</button></a>
 		<br><br>
 	</div>
-    -->
+   
 
 	<div class="search">
 
@@ -124,8 +51,8 @@
 				<select id="filterSelect" name="filterSelect" class="input-md form-control">
 				<option value="relevancy" selected>Most Relevant</option>
 				<option value="recency">Most Recent</option>
-				<option value="highest">Highest Dollar Amount</option>
-				<option value="lowest">Lowest Dollar Amount</option>
+				<option value="cost (highest first)">Highest Dollar Amount</option>
+				<option value="cost (lowest first)">Lowest Dollar Amount</option>
 				</select>
 				</div>
 				<div class="col-md-2">

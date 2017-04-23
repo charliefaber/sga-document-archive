@@ -49,7 +49,7 @@ app.post('/checkLogin', function(req, res) {
         console.log("login successful");
         req.session.admin = true;
         req.session.user = username;
-        res.redirect('/');
+        res.redirect('/upload');
       
     }
     });

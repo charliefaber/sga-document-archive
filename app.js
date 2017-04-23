@@ -89,7 +89,7 @@ var authAdmin = function(req, res, next) {
   if(req.session && req.session.admin)
     return next();
   else
-    return res.send(401, "401: You need to log in!");
+    res.sendFile(path.join(__dirname + '/views/login.html'))
 };
 //app.use(passport.initialize());
 //app.use(passport.session());

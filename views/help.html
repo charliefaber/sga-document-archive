@@ -14,12 +14,12 @@
 <div class="container">
 	<br>
 		<div class="menu">
-			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
-			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
 		</div>
 	<div class="header">
-		
+				<a href="/upload"><button style="margin-right: 10px; display:inline; float: right" type="button" class="btn btn-default btn-md">Upload</button></a>
+
 		<div class="logo">
+
 			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logo logoImg"></a>
 		</div>
 		
@@ -41,8 +41,8 @@
 			<input type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
 
 			<select id="filterSelect" name="filterSelect" class="input-md form-control">
-				<option value="relevancy" {{#if buttonVals.relevancy}}selected{{/if}}>Most Relevant</option>
-				<option value="recency" {{#if buttonVals.recency}}selected{{/if}}>Most Recent</option>
+					<option value="relevancy" selected>Most Relevant</option>
+					<option value="recency">Most Recent</option>
 				<option value="highest" {{#if buttonVals.highest}}selected{{/if}}>Highest Dollar Amount</option>
 				<option value="lowest" {{#if buttonVals.lowest}}selected{{/if}}>Lowest Dollar Amount</option>
 			</select>
@@ -57,6 +57,8 @@
 	<div class="containerdivNewLine"></div>
 	<br>
 <hr>
+
+
 
 
 

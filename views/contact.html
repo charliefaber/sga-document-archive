@@ -13,19 +13,17 @@
 <body style="background-image: url('../public/images/background.jpg'")>
 <div class="container">
 	<br>
-		<div class="menu">
-			<a href="/upload"><button type="button" class="menuBtn btn btn-default btn-md btn-block">Upload</button></a>
-			<a href="/login"><button type="button" class="menuBtn btn btn-primary btn-md btn-block">Sign In</button></a>
-		</div>
+
 	<div class="header">
-		
+				<a href="/upload"><button style="margin-right: 10px; display:inline; float: right" type="button" class="btn btn-default btn-md">Upload</button></a>
+
 		<div class="logo">
+
 			<a href="/"><img style="margin-left: 8px" src="../public/images/logo.jpg" class="logo logoImg"></a>
 		</div>
 		
 		<div class="search">
 
-			
 			<h2 style="font-weight: bold;">Georgia College<br></h2>
 			<h3>Student Government Association</h3>
 			<h4 style="font-style: italic; padding-top: 6px;">Document Archive</h4>
@@ -41,10 +39,10 @@
 			<input type="text" class="form-control input-md" id="search" name="searchText"  placeholder="Enter your search query here..." required>
 
 			<select id="filterSelect" name="filterSelect" class="input-md form-control">
-				<option value="relevancy" {{#if buttonVals.relevancy}}selected{{/if}}>Most Relevant</option>
-				<option value="recency" {{#if buttonVals.recency}}selected{{/if}}>Most Recent</option>
-				<option value="highest" {{#if buttonVals.highest}}selected{{/if}}>Highest Dollar Amount</option>
-				<option value="lowest" {{#if buttonVals.lowest}}selected{{/if}}>Lowest Dollar Amount</option>
+					<option value="relevancy" selected>Most Relevant</option>
+					<option value="recency">Most Recent</option>
+				<option value="cost (highest first)">Highest Dollar Amount</option>
+				<option value="cost (lowest first)">Lowest Dollar Amount</option>
 			</select>
 			<button type="submit" name="searchBtn" class="btn btn-primary btn-md">Search</button><br><br>
 			<a href="/advanced">Advanced Search</a>
