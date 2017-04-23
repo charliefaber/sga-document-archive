@@ -11,6 +11,8 @@ var textract = require('textract');
 var auth = require('../config/auth.js');
 
 
+var bcrypt = require('bcrypt');
+
 
 module.exports = function(app, passport){
 
@@ -45,7 +47,7 @@ app.post('/checkLogin', function(req, res) {
         res.redirect('/login');
           console.log("login failed");
       } 
-      else if(items[0].password == password) {
+      else if(bcrypt.compareSync(password, items[0].password) {
         console.log("login successful");
         req.session.admin = true;
         req.session.user = username;
