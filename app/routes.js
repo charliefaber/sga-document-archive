@@ -154,8 +154,6 @@ app.get('/delete/:doc',function(req,res) {
     console.log('deleted!');
     res.redirect('/');
   });
-
-
 });
 
 app.get('/download/:file(*)', function(req, res){
