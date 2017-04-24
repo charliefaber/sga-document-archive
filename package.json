@@ -44,5 +44,8 @@
     "passport-local": "^1.0.0",
     "textract": "^2.1.2",
     "underscore": "^1.8.3"
+  },
+  "engines": {
+    "node": "6.10.1"
   }
 }
