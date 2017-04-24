@@ -37,11 +37,11 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/logout', function(req, res) {
+/*app.get('/logout', function(req, res) {
   req.session.destroy();
 
 });
-
+*/
 app.post('/checkLogin', function(req, res) {
   var username = req.body.username;
   var password = req.body.password;
@@ -257,13 +257,13 @@ app.get('/login', function(req, res) {
 });
 
 
-// app.get('/logout', function(req,res){
-//     var name = req.user.username;
-//     console.log("LOGGING OUT " + name)
-//     req.logout();
-//     res.redirect('/');
-//     req.session.notice = name + " has successfully logged out.";
-// });
+app.get('/logout', function(req,res){
+     var name = req.user.username;
+     console.log("LOGGING OUT " + name)
+     req.logout();
+     res.redirect('/');
+     req.session.notice = name + " has successfully logged out.";
+});
 
 //
 //ADVANCED SEARCH PAGE
