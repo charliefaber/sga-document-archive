@@ -233,7 +233,6 @@ app.get('/login', function(req, res) {
 //     res.redirect('/');
 //     req.session.notice = name + " has successfully logged out.";
 // });
-// >>>>>>> d4328a540bda6202412898395c0c95bd2721956f
 
 //
 //ADVANCED SEARCH PAGE
