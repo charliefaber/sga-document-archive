@@ -90,7 +90,7 @@ var authAdmin = function(req, res, next) {
 };
 
 
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 // Generate a salt
 var salt = bcrypt.genSaltSync(10);
 
