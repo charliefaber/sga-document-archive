@@ -47,5 +47,14 @@
   },
   "engines": {
     "node": "6.10.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charliefaber/sga-document-archive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/charliefaber/sga-document-archive/issues"
+  },
+  "homepage": "https://github.com/charliefaber/sga-document-archive#readme"
 }
