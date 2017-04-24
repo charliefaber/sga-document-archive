@@ -27,7 +27,12 @@ app.get('/', function(req, res) {
 
         db.collection('documents').find(
         ).sort({ date: -1}).limit(5).toArray(function(err, items) {
-            res.render(path.join(__dirname, '../views/index.handlebars'), { items: items });
+            if(req.session.admin) {
+                res.render(path.join(__dirname, '../views/indexAdmin.handlebars'), { items: items });
+            }
+            else {
+                res.render(path.join(__dirname, '../views/index.handlebars'), { items: items });
+            }
         });
     });
 });
@@ -182,6 +187,7 @@ app.post('/upload', function(req, res) {
   var myFile = req.files.myFile;
 
   var idText = req.body.idText;
+  idText = idText.trim();
   var filePath = path.join(__dirname,`../uploads/${idText}.docx`);
 
 
