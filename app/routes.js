@@ -27,7 +27,12 @@ app.get('/', function(req, res) {
 
         db.collection('documents').find(
         ).sort({ date: -1}).limit(5).toArray(function(err, items) {
-            res.render(path.join(__dirname, '../views/index.handlebars'), { items: items });
+            if(req.session.admin) {
+                res.render(path.join(__dirname, '../views/indexAdmin.handlebars'), { items: items });
+            }
+            else {
+                res.render(path.join(__dirname, '../views/index.handlebars'), { items: items });
+            }
         });
     });
 });
@@ -47,13 +52,14 @@ app.post('/checkLogin', function(req, res) {
         res.redirect('/login');
           console.log("login failed");
       } 
-      else if(bcrypt.compareSync(password, items[0].password) {
+      else if(bcrypt.compareSync(password, items[0].password)) {
         console.log("login successful");
         req.session.admin = true;
         req.session.user = username;
         res.redirect('/upload');
       
-    }
+      }
+    
     });
 
   });
@@ -122,13 +128,37 @@ app.post('/search', function(req, res) {
       if(items[0] == null) {
         fail = true;
       }
-      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail });
 
+      session = req.session.admin;
+
+      if(session == true) 
+        res.render(path.join(__dirname, '../views/resultsAdmin.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail});
+      else {
+      res.render(path.join(__dirname, '../views/results.handlebars'), {search: search, buttonVals: buttonVals, results: items, fail: fail});
+    }
     });
     //console.log(JSON.stringify(results));
     db.close();
   });
 
+});
+
+app.get('/delete/:doc',function(req,res) {
+  var search = req.params.search;
+  var doc = req.params.doc;
+  console.log("delete clicked!");
+
+  MongoClient.connect(configDb.url, function(err, db) {
+    assert.equal(null, err);
+    console.log(doc);
+    db.collection('documents').find({_id: doc}).toArray(function(err, items) {
+      db.collection('deleted').insert(items[0]);
+
+    });
+    db.collection('documents').remove({_id: doc});
+    console.log('deleted!');
+    res.redirect('/');
+  });
 });
 
 app.get('/download/:file(*)', function(req, res){
@@ -157,6 +187,7 @@ app.post('/upload', function(req, res) {
   var myFile = req.files.myFile;
 
   var idText = req.body.idText;
+  idText = idText.trim();
   var filePath = path.join(__dirname,`../uploads/${idText}.docx`);
 
 
