@@ -2,142 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99052a05-ec12-457f-9613-cacc524e6ba7" name="Default" comment="login updates">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/test/fixtures/packed.tar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/test/fixtures/packed.tar.gz" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Procfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/.bin/node-pre-gyp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/.bin/node-pre-gyp.cmd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/.bin/nopt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/.bin/nopt.cmd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/.bin/rc.cmd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/appveyor.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/bin/node-pre-gyp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/bin/node-pre-gyp.cmd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/build.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/clean.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/configure.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/info.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/install.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/node-pre-gyp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/package.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/pre-binding.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/publish.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/rebuild.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/reinstall.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/reveal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/testbinary.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/testpackage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/unpublish.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/util/abi_crosswalk.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/util/compile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/util/handle_gyp_opts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/util/nw-pre-gyp/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/util/nw-pre-gyp/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/util/s3_setup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/lib/util/versioning.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/node-pre-gyp/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/nopt/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/nopt/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/nopt/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/nopt/bin/nopt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/nopt/examples/my-program.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/nopt/lib/nopt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/nopt/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/nopt/test/basic.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/LICENSE.APACHE2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/LICENSE.BSD" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/LICENSE.MIT" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/browser.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/lib/utils.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/test/ini.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/test/nested-env-vars.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rc/test/test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/test/fixtures/packed-file.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/test/fixtures/to-pack/bar.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/test/fixtures/to-pack/foo.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/tar-pack/test/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/node-pre-gyp/template-name.diff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/nopt/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/os-homedir/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/os-homedir/license" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/os-homedir/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/os-homedir/readme.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/os-tmpdir/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/os-tmpdir/license" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/os-tmpdir/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/os-tmpdir/readme.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/osenv/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/osenv/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/osenv/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/osenv/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/osenv/osenv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/osenv/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/osenv/test/unix.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/osenv/test/windows.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/osenv/x.tap" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/node_modules/.bin/rimraf.cmd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/node_modules/rimraf/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/node_modules/rimraf/bin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/node_modules/rimraf/rimraf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/rimraf/package.json" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/node_modules/.bin/rimraf" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/.bin/rc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/node_modules/rimraf/LICENSE" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rimraf/LICENSE" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/node_modules/rimraf/package.json" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rimraf/package.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/.bin/rimraf" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/.bin/rimraf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/.bin/rimraf.cmd" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/.bin/rimraf.cmd" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/.jshintrc" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/.jshintrc" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/.npmignore" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/.npmignore" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/History.md" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/History.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/Makefile" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/Makefile" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/Readme.md" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/Readme.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/bower.json" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/bower.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/browser.js" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/browser.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/component.json" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/component.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/debug.js" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/debug.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/node.js" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/node.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/debug/package.json" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/debug/package.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/ms/.npmignore" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/ms/.npmignore" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/ms/History.md" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/ms/History.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/ms/LICENSE" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/ms/LICENSE" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/ms/README.md" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/ms/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/ms/index.js" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/ms/index.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/ms/package.json" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/ms/package.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/once/LICENSE" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/once/LICENSE" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/once/README.md" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/once/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/once/once.js" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/once/once.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/once/package.json" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/once/package.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/rimraf/LICENSE" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/nopt/LICENSE" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/rimraf/README.md" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rimraf/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/rimraf/bin.js" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rimraf/bin.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/tar-pack/node_modules/rimraf/rimraf.js" afterPath="$PROJECT_DIR$/node_modules/bcrypt/node_modules/rimraf/rimraf.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/CHANGELOG.md" afterPath="$PROJECT_DIR$/node_modules/node-pre-gyp/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/README.md" afterPath="$PROJECT_DIR$/node_modules/node-pre-gyp/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/lib/node-pre-gyp.js" afterPath="$PROJECT_DIR$/node_modules/node-pre-gyp/lib/node-pre-gyp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/lib/util/abi_crosswalk.json" afterPath="$PROJECT_DIR$/node_modules/node-pre-gyp/lib/util/abi_crosswalk.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-pre-gyp/package.json" afterPath="$PROJECT_DIR$/node_modules/node-pre-gyp/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/nopt/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/nopt/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/nopt/README.md" afterPath="$PROJECT_DIR$/node_modules/nopt/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/nopt/lib/nopt.js" afterPath="$PROJECT_DIR$/node_modules/nopt/lib/nopt.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/nopt/package.json" afterPath="$PROJECT_DIR$/node_modules/nopt/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/nopt/test/basic.js" afterPath="$PROJECT_DIR$/node_modules/nopt/test/basic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/rc/lib/utils.js" afterPath="$PROJECT_DIR$/node_modules/rc/lib/utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/rc/package.json" afterPath="$PROJECT_DIR$/node_modules/rc/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/rc/test/nested-env-vars.js" afterPath="$PROJECT_DIR$/node_modules/rc/test/nested-env-vars.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/tar-pack/package.json" afterPath="$PROJECT_DIR$/node_modules/tar-pack/package.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -575,8 +440,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -587,7 +451,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2532637" sideWeight="0.5143603" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
